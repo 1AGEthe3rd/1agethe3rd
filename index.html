@@ -2,28 +2,30 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+  >
 
   <title>1AGEthe3rd</title>
 
   <meta
     name="description"
-    content="1AGEthe3rd — independent technology, media and creative company."
+    content="1AGEthe3rd — technology, creative projects and products building on Solana."
   >
 
   <style>
     :root {
       --black: #000000;
       --white: #f4f4ef;
-      --muted: #9b9b92;
-
-      --field: #4b5320;
-      --olive: #6b7045;
-      --fatigue: #7a8060;
-
+      --soft-white: #d9d9d2;
+      --muted: #8c8d83;
+      --army: #4b5320;
+      --olive: #69704c;
+      --fatigue: #7d8360;
       --signal: #1bfd9c;
-
-      --max-width: 760px;
+      --max: 760px;
     }
 
     * {
@@ -33,19 +35,17 @@
     }
 
     html {
-      scroll-behavior: smooth;
       background: var(--black);
+      scroll-behavior: smooth;
     }
 
     body {
+      margin: 0;
       background: var(--black);
       color: var(--white);
-      font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
-
+      font-family: Arial, Helvetica, sans-serif;
       overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
     }
 
     a {
@@ -60,131 +60,119 @@
     .page {
       width: 100%;
       overflow: hidden;
+      background: #000;
+    }
+
+    .rule {
+      width: 100%;
+      max-width: var(--max);
+      height: 1px;
+      margin: auto;
+      background: rgba(244,244,239,.18);
     }
 
     .section {
       width: 100%;
-      max-width: var(--max-width);
-      margin: 0 auto;
-      padding: 70px 24px;
-      position: relative;
-    }
-
-    .eyebrow {
-      font-size: 11px;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--fatigue);
-      margin-bottom: 20px;
-      font-weight: 700;
+      max-width: var(--max);
+      margin: auto;
+      padding: 90px 28px;
+      text-align: center;
     }
 
     .section-title {
-      font-size: clamp(34px, 11vw, 68px);
-      line-height: 0.95;
-      text-transform: uppercase;
-      letter-spacing: -0.04em;
+      font-size: clamp(46px, 14vw, 82px);
+      line-height: .92;
+      letter-spacing: -.055em;
       font-weight: 900;
+      text-transform: uppercase;
     }
 
-    .rule {
-      height: 1px;
-      width: 100%;
-      background: rgba(244,244,239,0.18);
-      max-width: var(--max-width);
-      margin: 0 auto;
-    }
-
-    /* ---------------- HERO ---------------- */
+    /* HERO */
 
     .hero {
-      min-height: 100svh;
       position: relative;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+      width: 100%;
+      min-height: 100svh;
       overflow: hidden;
       background: #000;
-    }
-
-    .hero-top {
-      z-index: 6;
-      padding: 28px 22px 0;
       display: flex;
-      justify-content: space-between;
+      flex-direction: column;
       align-items: center;
     }
 
-    .brand-small {
-      font-weight: 900;
-      letter-spacing: -0.04em;
-      font-size: 18px;
-    }
-
-    .hero-status {
-      font-size: 10px;
-      letter-spacing: 0.16em;
-      color: var(--fatigue);
-      text-transform: uppercase;
-    }
-
-    .hero-center {
+    .top-mark {
       position: relative;
-      z-index: 6;
-      padding: 0 24px;
-      margin-top: auto;
-      margin-bottom: 22vh;
-    }
-
-    .hero-logo {
-      font-size: clamp(52px, 15vw, 104px);
-      line-height: 0.82;
-      letter-spacing: -0.075em;
-      font-weight: 900;
-      text-transform: uppercase;
-    }
-
-    .hero-logo span {
-      display: block;
-    }
-
-    .hero-subtitle {
-      margin-top: 26px;
-      max-width: 390px;
-      line-height: 1.45;
+      z-index: 20;
+      width: 100%;
+      text-align: center;
+      padding-top: max(34px, env(safe-area-inset-top));
+      font-size: clamp(22px, 7vw, 31px);
+      font-weight: 800;
+      letter-spacing: .38em;
+      padding-left: .38em;
       color: var(--white);
-      font-size: 15px;
     }
 
-    .hero-location {
-      margin-top: 18px;
-      font-size: 10px;
-      letter-spacing: 0.18em;
-      color: var(--fatigue);
+    .hero-content {
+      position: relative;
+      z-index: 12;
+      width: 100%;
+      max-width: 700px;
+      text-align: center;
+      margin-top: auto;
+      padding: 40px 22px 0;
+    }
+
+    .hero-name {
+      font-size: clamp(48px, 13.5vw, 91px);
+      line-height: .92;
+      letter-spacing: -.075em;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .hero-name .the {
+      text-transform: lowercase;
+    }
+
+    .hero-tagline {
+      margin: 30px auto 0;
+      max-width: 520px;
+      font-size: clamp(16px, 4.6vw, 21px);
+      line-height: 1.55;
+      color: var(--soft-white);
+    }
+
+    .hero-tech {
+      margin-top: 22px;
+      color: var(--signal);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .17em;
       text-transform: uppercase;
     }
 
-    /* ---------------- RAIN ---------------- */
+    /* RAIN */
 
     .rain {
       position: absolute;
       inset: 0;
+      z-index: 5;
       pointer-events: none;
       overflow: hidden;
-      z-index: 3;
-      opacity: 0.34;
+      opacity: .68;
     }
 
     .drop {
       position: absolute;
+      top: -100px;
       width: 1px;
-      height: 42px;
+      height: 62px;
       background: linear-gradient(
         to bottom,
         transparent,
-        rgba(255,255,255,0.5)
+        rgba(255,255,255,.78)
       );
-
       animation: rainFall linear infinite;
     }
 
@@ -198,755 +186,788 @@
       }
     }
 
-    /* ---------------- CITY ---------------- */
+    /* SPLASHES */
 
-    .city {
+    .splash-zone {
       position: absolute;
       left: 0;
       right: 0;
-      bottom: 0;
-      height: 33vh;
-      min-height: 240px;
-      z-index: 2;
+      bottom: 81px;
+      height: 40px;
+      z-index: 9;
+      pointer-events: none;
       overflow: hidden;
     }
 
-    .skyline {
+    .splash {
       position: absolute;
-      bottom: 83px;
+      bottom: 0;
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.7);
+      opacity: 0;
+      animation: splash 1.5s ease-out infinite;
+    }
+
+    .splash::before,
+    .splash::after {
+      content: "";
+      position: absolute;
+      left: 1px;
+      bottom: 1px;
+      width: 1px;
+      height: 10px;
+      background: rgba(255,255,255,.5);
+      transform-origin: bottom;
+    }
+
+    .splash::before {
+      transform: rotate(-55deg);
+    }
+
+    .splash::after {
+      transform: rotate(55deg);
+    }
+
+    @keyframes splash {
+      0% {
+        opacity: 0;
+        transform: scale(.3) translateY(0);
+      }
+
+      12% {
+        opacity: .8;
+      }
+
+      45% {
+        opacity: .25;
+        transform: scale(1.25) translateY(-7px);
+      }
+
+      100% {
+        opacity: 0;
+        transform: scale(1.5) translateY(-9px);
+      }
+    }
+
+    /* MLK WORLD */
+
+    .mlk-world {
+      position: relative;
+      z-index: 8;
       width: 100%;
-      height: 150px;
+      height: 330px;
+      margin-top: 28px;
+      overflow: hidden;
+    }
+
+    .buildings {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 98px;
+      height: 145px;
     }
 
     .building {
       position: absolute;
       bottom: 0;
-      background: #060606;
-      border-top: 1px solid rgba(244,244,239,0.12);
+      background: #050505;
+      border-top: 1px solid rgba(244,244,239,.10);
     }
 
-    .building::after {
-      content: "";
-      position: absolute;
-      inset: 14px 12px;
-      background:
-        repeating-linear-gradient(
-          to bottom,
-          rgba(107,112,69,0.18) 0px,
-          rgba(107,112,69,0.18) 3px,
-          transparent 3px,
-          transparent 22px
-        );
+    .building.one {
+      left: -3%;
+      width: 31%;
+      height: 92px;
     }
 
-    .b1 {
-      left: 0;
-      width: 24%;
-      height: 95px;
-    }
-
-    .b2 {
-      left: 20%;
-      width: 24%;
+    .building.two {
+      left: 25%;
+      width: 29%;
       height: 130px;
     }
 
-    .b3 {
-      left: 43%;
-      width: 20%;
-      height: 82px;
+    .building.three {
+      left: 53%;
+      width: 25%;
+      height: 105px;
     }
 
-    .b4 {
-      left: 61%;
-      width: 27%;
-      height: 118px;
+    .building.four {
+      right: -5%;
+      width: 28%;
+      height: 145px;
     }
 
-    .b5 {
-      right: -4%;
-      width: 20%;
-      height: 75px;
-    }
-
-    .digital-sign {
+    .project-window {
       position: absolute;
-      bottom: 140px;
       right: 10%;
-      z-index: 3;
-      color: var(--signal);
-      border: 1px solid var(--signal);
-      padding: 8px 10px;
+      bottom: 45px;
       font-size: 9px;
-      letter-spacing: 0.14em;
-      background: #000;
-      box-shadow: 0 0 18px rgba(27,253,156,0.18);
+      letter-spacing: .17em;
+      color: var(--signal);
+      border-bottom: 1px solid var(--signal);
+      padding-bottom: 4px;
     }
 
-    .street-sign {
+    .street-pole {
       position: absolute;
-      bottom: 90px;
-      left: 8%;
-      z-index: 4;
-      font-size: 9px;
-      letter-spacing: 0.14em;
-      color: var(--white);
+      left: 14%;
+      bottom: 98px;
+      width: 2px;
+      height: 137px;
+      background: rgba(244,244,239,.36);
+    }
+
+    .street-pole::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 58px;
+      height: 2px;
+      background: rgba(244,244,239,.36);
+    }
+
+    .street-pole::after {
+      content: "";
+      position: absolute;
+      top: -4px;
+      left: 50px;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--olive);
+      box-shadow: 0 0 12px rgba(105,112,76,.5);
+    }
+
+    .mlk-label {
+      position: absolute;
+      z-index: 10;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 101px;
+      white-space: nowrap;
+      color: var(--soft-white);
+      font-size: 10px;
+      letter-spacing: .20em;
+      text-transform: uppercase;
     }
 
     .road {
       position: absolute;
       left: 0;
+      right: 0;
       bottom: 0;
-      height: 84px;
-      width: 100%;
-      background: #020202;
-      border-top: 1px solid rgba(244,244,239,0.2);
+      height: 99px;
+      border-top: 1px solid rgba(244,244,239,.25);
+      background: #010101;
     }
 
-    .road-line {
+    .lane {
       position: absolute;
       left: 0;
       right: 0;
-      bottom: 37px;
-      height: 1px;
-      background:
-        repeating-linear-gradient(
-          90deg,
-          rgba(244,244,239,0.6) 0px,
-          rgba(244,244,239,0.6) 32px,
-          transparent 32px,
-          transparent 68px
-        );
+      bottom: 43px;
+      height: 2px;
+      background: repeating-linear-gradient(
+        90deg,
+        rgba(244,244,239,.58) 0px,
+        rgba(244,244,239,.58) 45px,
+        transparent 45px,
+        transparent 102px
+      );
     }
 
-    .car {
+    /* VEHICLES */
+
+    .vehicle {
       position: absolute;
-      bottom: 24px;
-      left: -90px;
-      width: 78px;
-      height: 23px;
-      background: var(--field);
-      border-radius: 14px 18px 4px 4px;
-      animation: drive 10s linear infinite;
+      z-index: 12;
+      bottom: 25px;
+      left: -150px;
+      width: 104px;
+      height: 27px;
+      background: var(--army);
+      border-radius: 14px 23px 5px 5px;
+      animation: drive 11s linear infinite;
     }
 
-    .car::before {
+    .vehicle::before {
       content: "";
       position: absolute;
-      width: 38px;
-      height: 17px;
-      left: 18px;
-      top: -10px;
-      border-radius: 20px 20px 0 0;
+      left: 25px;
+      top: -18px;
+      width: 53px;
+      height: 21px;
       background: var(--olive);
+      clip-path: polygon(
+        19% 100%,
+        34% 5%,
+        76% 5%,
+        100% 100%
+      );
     }
 
-    .car::after {
+    .vehicle::after {
       content: "";
       position: absolute;
-      width: 8px;
-      height: 8px;
+      left: 17px;
+      bottom: -7px;
+      width: 13px;
+      height: 13px;
       border-radius: 50%;
-      background: var(--white);
-      bottom: -5px;
-      left: 13px;
-      box-shadow: 43px 0 var(--white);
+      background: #050505;
+      border: 2px solid #c7c7c0;
+      box-shadow:
+        61px 0 0 -2px #050505,
+        61px 0 0 0 #c7c7c0;
     }
 
-    .car.second {
-      width: 60px;
-      height: 19px;
-      opacity: .6;
-      bottom: 53px;
-      animation:
-        driveReverse 15s linear infinite;
-      animation-delay: -6s;
+    .vehicle.second {
+      width: 82px;
+      height: 23px;
+      bottom: 62px;
+      opacity: .55;
+      animation: driveReverse 16s linear infinite;
+      animation-delay: -8s;
     }
 
     @keyframes drive {
       from {
-        transform: translateX(-120px);
+        transform: translateX(-160px);
       }
 
       to {
-        transform: translateX(calc(100vw + 200px));
+        transform: translateX(calc(100vw + 220px));
       }
     }
 
     @keyframes driveReverse {
       from {
-        transform:
-          translateX(calc(100vw + 180px))
-          scaleX(-1);
+        transform: translateX(calc(100vw + 190px)) scaleX(-1);
       }
 
       to {
-        transform:
-          translateX(-180px)
-          scaleX(-1);
+        transform: translateX(-190px) scaleX(-1);
       }
     }
 
-    .scroll-note {
-      position: absolute;
-      right: 20px;
-      bottom: 102px;
-      z-index: 7;
-      font-size: 9px;
-      letter-spacing: 0.18em;
-      writing-mode: vertical-rl;
-      color: var(--muted);
+    /* PROJECTS */
+
+    .projects {
+      padding-bottom: 105px;
     }
 
-    /* ---------------- SIGNAL ---------------- */
-
-    .signal-name {
-      margin-top: 42px;
-      font-size: 20px;
-      font-weight: 800;
-      text-transform: uppercase;
-    }
-
-    .progress {
-      margin-top: 14px;
-      width: 100%;
-      height: 5px;
-      background: #111;
-      overflow: hidden;
-    }
-
-    .progress-value {
-      height: 100%;
-      width: 62%;
-      background: var(--signal);
-      box-shadow: 0 0 16px rgba(27,253,156,.38);
-    }
-
-    .signal-meta {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 12px;
+    .project-help {
+      margin-top: 23px;
+      color: var(--fatigue);
       font-size: 10px;
-      letter-spacing: 0.15em;
-      color: var(--signal);
       text-transform: uppercase;
+      letter-spacing: .18em;
     }
 
-    .signal-description {
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.5;
-      max-width: 460px;
-      margin-top: 22px;
-    }
-
-    /* ---------------- PROJECTS ---------------- */
-
-    .project-slider {
+    .project-stage {
       position: relative;
-      margin-top: 48px;
-      min-height: 390px;
+      margin-top: 50px;
+      min-height: 570px;
+      touch-action: pan-y;
+      user-select: none;
     }
 
     .project {
       display: none;
-      animation: fadeProject .32s ease;
+      text-align: center;
+      animation: projectIn .3s ease;
     }
 
     .project.active {
       display: block;
     }
 
-    @keyframes fadeProject {
+    @keyframes projectIn {
       from {
         opacity: 0;
-        transform: translateY(10px);
+        transform: translateX(18px);
       }
 
       to {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateX(0);
       }
     }
 
-    .project-number {
-      font-size: 10px;
-      color: var(--fatigue);
-      letter-spacing: .18em;
-      text-transform: uppercase;
-    }
-
-    .project-mark {
-      min-height: 140px;
+    .project-logo {
+      min-height: 180px;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 18px 0 30px;
-      font-size: clamp(48px, 14vw, 92px);
+      font-size: clamp(66px, 20vw, 120px);
       font-weight: 900;
-      letter-spacing: -0.07em;
+      letter-spacing: -.07em;
+      margin-bottom: 32px;
     }
 
-    .project[data-project="1age"] .project-mark {
+    .project[data-project="1age"] .project-logo {
       color: var(--signal);
+      text-shadow: 0 0 24px rgba(27,253,156,.18);
     }
 
-    .project[data-project="nnb"] .project-mark {
+    .project[data-project="nnb"] .project-logo {
       color: var(--white);
     }
 
-    .project-title {
-      font-size: 31px;
-      line-height: 1;
-      text-transform: uppercase;
-      letter-spacing: -0.04em;
-      font-weight: 900;
-    }
-
-    .project-copy {
-      margin-top: 14px;
-      max-width: 460px;
-      color: var(--muted);
-      line-height: 1.5;
-      font-size: 14px;
-    }
-
-    .project-status {
-      margin-top: 17px;
+    .project[data-project="online"] .project-logo {
       color: var(--olive);
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: .18em;
     }
 
-    .project[data-project="1age"] .project-status {
+    .project-name {
+      font-size: clamp(32px, 9vw, 51px);
+      font-weight: 900;
+      letter-spacing: -.04em;
+      text-transform: uppercase;
+    }
+
+    .project-description {
+      max-width: 440px;
+      margin: 20px auto 0;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    .project-state {
+      margin-top: 22px;
+      font-size: 10px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--olive);
+    }
+
+    .project[data-project="1age"] .project-state {
       color: var(--signal);
     }
 
-    .open-project {
-      margin-top: 28px;
+    .enter-project {
       display: inline-block;
-      border-bottom: 1px solid currentColor;
-      padding-bottom: 4px;
+      margin-top: 33px;
+      padding-bottom: 5px;
+      border-bottom: 1px solid var(--white);
       font-size: 12px;
-      letter-spacing: .12em;
+      letter-spacing: .16em;
       text-transform: uppercase;
     }
 
-    .slider-controls {
+    /* SOCIAL RAIL */
+
+    .project-network {
+      margin-top: 56px;
+    }
+
+    .network-title {
+      color: var(--fatigue);
+      font-size: 10px;
+      letter-spacing: .20em;
+      text-transform: uppercase;
+      margin-bottom: 27px;
+    }
+
+    .icon-rail {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      margin-top: 36px;
-    }
-
-    .arrow-button {
-      width: 58px;
-      height: 58px;
-      border-radius: 50%;
-      color: var(--white);
-      background: #000;
-      border: 1px solid var(--white);
-      cursor: pointer;
-      font-size: 22px;
-    }
-
-    .slider-position {
-      color: var(--fatigue);
-      font-size: 10px;
-      letter-spacing: .18em;
-    }
-
-    /* ---------------- LINK RAIL ---------------- */
-
-    .link-zone {
-      margin-top: 45px;
-    }
-
-    .link-zone-title {
-      font-size: 10px;
-      letter-spacing: .18em;
-      color: var(--fatigue);
-      text-transform: uppercase;
-      margin-bottom: 18px;
-    }
-
-    .link-rail {
-      display: flex;
+      gap: 32px;
       overflow-x: auto;
-      gap: 14px;
-      padding-bottom: 12px;
+      padding: 4px calc(50% - 36px) 16px;
       scrollbar-width: none;
       scroll-snap-type: x mandatory;
     }
 
-    .link-rail::-webkit-scrollbar {
+    .icon-rail::-webkit-scrollbar {
       display: none;
     }
 
-    .rail-link {
-      flex: 0 0 104px;
-      height: 104px;
-      border: 1px solid rgba(244,244,239,.38);
+    .social-link {
+      flex: 0 0 72px;
+      width: 72px;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      padding: 13px;
-      scroll-snap-align: start;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      scroll-snap-align: center;
+    }
+
+    .social-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      border: 1px solid rgba(244,244,239,.62);
+      display: grid;
+      place-items: center;
+      font-size: 17px;
+      font-weight: 800;
+      letter-spacing: -.02em;
+      color: var(--white);
+      transition:
+        background .18s ease,
+        color .18s ease,
+        box-shadow .18s ease,
+        border-color .18s ease;
+    }
+
+    .social-link:active .social-icon {
+      background: var(--signal);
+      color: #000;
+      border-color: var(--signal);
+      box-shadow: 0 0 24px rgba(27,253,156,.45);
+    }
+
+    .social-label {
+      font-size: 8px;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      color: var(--muted);
+    }
+
+    /* DOTS */
+
+    .project-dots {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 46px;
+    }
+
+    .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: rgba(244,244,239,.23);
       transition: .2s ease;
     }
 
-    .rail-link:active {
-      background: var(--field);
+    .dot.active {
+      background: var(--signal);
+      box-shadow: 0 0 10px rgba(27,253,156,.5);
     }
 
-    .rail-icon {
-      font-size: 24px;
-    }
+    /* NAVIGATION */
 
-    .rail-label {
-      font-size: 9px;
-      letter-spacing: .13em;
-      text-transform: uppercase;
-    }
-
-    /* ---------------- MADE ---------------- */
-
-    .made-item {
-      margin-top: 42px;
-    }
-
-    .made-number {
-      font-size: clamp(72px, 23vw, 145px);
-      font-weight: 900;
-      line-height: .78;
-      letter-spacing: -.08em;
-      color: var(--field);
-    }
-
-    .made-name {
-      font-size: 25px;
-      font-weight: 800;
-      margin-top: 20px;
-    }
-
-    .made-meta {
-      margin-top: 8px;
-      color: var(--muted);
-      font-size: 11px;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-    }
-
-    /* ---------------- MEDIA ---------------- */
-
-    .media-window {
-      margin-top: 42px;
+    .project-navigation {
       width: 100%;
-      aspect-ratio: 16 / 9;
-      border: 1px solid rgba(244,244,239,.25);
       display: flex;
       align-items: center;
-      justify-content: center;
-      position: relative;
+      justify-content: space-between;
+      margin-top: 40px;
     }
 
-    .media-play {
-      font-size: 18px;
-      border: 1px solid white;
-      width: 62px;
-      height: 62px;
+    .nav-button {
+      width: 78px;
+      height: 78px;
       border-radius: 50%;
+      background: #000;
+      border: 1.5px solid var(--white);
       display: grid;
       place-items: center;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+      transition:
+        background .17s ease,
+        box-shadow .17s ease,
+        border-color .17s ease;
     }
 
-    .media-label {
+    .nav-arrow {
+      position: relative;
+      width: 35px;
+      height: 24px;
+    }
+
+    .nav-arrow::before {
+      content: "";
       position: absolute;
-      left: 12px;
-      bottom: 12px;
-      font-size: 9px;
-      letter-spacing: .16em;
-      color: var(--muted);
+      top: 9px;
+      width: 27px;
+      height: 6px;
+      border-radius: 2px;
+      background: var(--white);
     }
 
-    /* ---------------- FUTURE ---------------- */
-
-    .future-list {
-      margin-top: 35px;
+    .nav-arrow::after {
+      content: "";
+      position: absolute;
+      top: 3px;
+      width: 16px;
+      height: 16px;
+      border-top: 6px solid var(--white);
+      border-right: 6px solid var(--white);
     }
 
-    .future-row {
-      min-height: 76px;
-      border-top: 1px solid rgba(244,244,239,.16);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    .nav-button.next .nav-arrow::before {
+      left: 1px;
     }
 
-    .future-row:last-child {
-      border-bottom: 1px solid rgba(244,244,239,.16);
+    .nav-button.next .nav-arrow::after {
+      right: 0;
+      transform: rotate(45deg);
     }
 
-    .future-project {
-      font-weight: 700;
-      font-size: 15px;
-      letter-spacing: -.02em;
+    .nav-button.prev .nav-arrow::before {
+      right: 1px;
     }
 
-    .future-state {
-      font-size: 9px;
-      letter-spacing: .13em;
-      text-transform: uppercase;
+    .nav-button.prev .nav-arrow::after {
+      left: 0;
+      transform: rotate(-135deg);
+    }
+
+    .nav-button:active,
+    .nav-button.flash {
+      background: var(--signal);
+      border-color: var(--signal);
+      box-shadow: 0 0 29px rgba(27,253,156,.55);
+    }
+
+    .nav-button:active .nav-arrow::before,
+    .nav-button.flash .nav-arrow::before {
+      background: #000;
+    }
+
+    .nav-button:active .nav-arrow::after,
+    .nav-button.flash .nav-arrow::after {
+      border-color: #000;
+    }
+
+    .project-count {
       color: var(--fatigue);
-    }
-
-    /* ---------------- COMPANY ---------------- */
-
-    .company-copy {
-      margin-top: 35px;
-      font-size: 19px;
-      line-height: 1.45;
-      max-width: 550px;
-    }
-
-    .company-meta {
-      margin-top: 50px;
-      display: grid;
-      gap: 11px;
-      color: var(--muted);
       font-size: 10px;
-      letter-spacing: .12em;
+      letter-spacing: .19em;
+    }
+
+    /* FOLLOW */
+
+    .follow {
+      padding-top: 100px;
+      padding-bottom: 110px;
+    }
+
+    .follow-copy {
+      margin-top: 24px;
+      color: var(--muted);
+      font-size: 14px;
+      letter-spacing: .02em;
+    }
+
+    .company-socials {
+      margin-top: 53px;
+    }
+
+    /* COMPANY */
+
+    .company {
+      min-height: 78svh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding-top: 105px;
+      padding-bottom: 115px;
+    }
+
+    .company-name {
+      font-size: clamp(52px, 15vw, 91px);
+      line-height: .92;
+      letter-spacing: -.065em;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .company-info {
+      margin-top: 55px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      align-items: center;
+      color: var(--soft-white);
+      font-size: 11px;
       text-transform: uppercase;
+      letter-spacing: .17em;
+      line-height: 1.5;
+    }
+
+    .company-info .solana {
+      color: var(--signal);
     }
 
     footer {
-      max-width: var(--max-width);
-      margin: auto;
-      padding: 24px 24px 50px;
-      color: var(--fatigue);
+      margin-top: 80px;
+      color: var(--olive);
       font-size: 9px;
-      letter-spacing: .13em;
+      letter-spacing: .17em;
       text-transform: uppercase;
     }
 
     @media (min-width: 760px) {
-      .hero-center {
-        padding-left: max(24px, calc((100vw - var(--max-width)) / 2));
+      .hero-content {
+        padding-left: 40px;
+        padding-right: 40px;
       }
 
-      .hero-top {
-        padding-left: max(24px, calc((100vw - var(--max-width)) / 2));
-        padding-right: max(24px, calc((100vw - var(--max-width)) / 2));
+      .section {
+        padding-left: 40px;
+        padding-right: 40px;
+      }
+
+      .icon-rail {
+        justify-content: center;
+        padding-left: 20px;
+        padding-right: 20px;
       }
     }
 
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+    }
   </style>
 </head>
-
 
 <body>
 
 <div class="page">
 
-  <!-- HERO -->
-
   <header class="hero">
 
     <div class="rain" id="rain"></div>
 
-    <div class="hero-top">
-      <div class="brand-small">
-        1AGEthe3rd
-      </div>
-
-      <div class="hero-status">
-        EST. PDX
-      </div>
+    <div class="top-mark">
+      I I I
     </div>
 
+    <div class="hero-content">
 
-    <div class="hero-center">
-
-      <h1 class="hero-logo">
-        <span>1AGE</span>
-        <span>the3rd</span>
+      <h1 class="hero-name">
+        1AGE<span class="the">the</span>3rd
       </h1>
 
-      <p class="hero-subtitle">
-        Independent technology, media and creative company
-        building products for the next age of the internet.
+      <p class="hero-tagline">
+        Technology, creative projects
+        and products building on Solana.
       </p>
 
-      <div class="hero-location">
-        NE MLK JR BLVD • PACIFIC NORTHWEST
+      <div class="hero-tech">
+        Solana • Blockchain • Technology
       </div>
 
     </div>
 
+    <div class="mlk-world">
 
-    <div class="city">
+      <div class="buildings">
+        <div class="building one"></div>
+        <div class="building two"></div>
+        <div class="building three"></div>
+        <div class="building four"></div>
 
-      <div class="skyline">
-
-        <div class="building b1"></div>
-        <div class="building b2"></div>
-        <div class="building b3"></div>
-        <div class="building b4"></div>
-        <div class="building b5"></div>
-
+        <div class="project-window">
+          1AGE
+        </div>
       </div>
 
-      <div class="digital-sign">
-        1AGE • ACTIVE
-      </div>
+      <div class="street-pole"></div>
 
-      <div class="street-sign">
+      <div class="mlk-label">
         NE MLK JR BLVD
       </div>
 
+      <div class="splash-zone" id="splashes"></div>
+
       <div class="road">
-
-        <div class="road-line"></div>
-
-        <div class="car"></div>
-        <div class="car second"></div>
-
+        <div class="lane"></div>
+        <div class="vehicle"></div>
+        <div class="vehicle second"></div>
       </div>
 
-    </div>
-
-    <div class="scroll-note">
-      SCROLL ↓
     </div>
 
   </header>
 
-
   <div class="rule"></div>
 
-
-  <!-- CURRENT SIGNAL -->
-
-  <section class="section">
-
-    <div class="eyebrow">
-      Current Signal
-    </div>
+  <section class="section projects">
 
     <h2 class="section-title">
-      Building<br>
-      Now.
+      Projects
     </h2>
 
-    <div class="signal-name">
-      1AGE Search
+    <div class="project-help">
+      Swipe to explore
     </div>
 
-    <div class="progress">
-      <div class="progress-value"></div>
-    </div>
+    <div class="project-stage" id="projectStage">
 
-    <div class="signal-meta">
-      <span>Building</span>
-      <span>Signal Active</span>
-    </div>
+      <article class="project active" data-project="1age">
 
-    <p class="signal-description">
-      Search and discovery infrastructure for the Solana ecosystem.
-      Current development is focused on making Solana easier to explore,
-      understand and use.
-    </p>
-
-  </section>
-
-
-  <div class="rule"></div>
-
-
-  <!-- PROJECTS -->
-
-  <section class="section">
-
-    <div class="eyebrow">
-      1AGEthe3rd Projects
-    </div>
-
-    <h2 class="section-title">
-      Project<br>
-      Universe.
-    </h2>
-
-
-    <div class="project-slider">
-
-      <!-- 1AGE -->
-
-      <article
-        class="project active"
-        data-project="1age"
-      >
-
-        <div class="project-number">
-          Project 001
-        </div>
-
-        <div class="project-mark">
+        <div class="project-logo">
           1AGE
         </div>
 
-        <h3 class="project-title">
+        <h3 class="project-name">
           1AGE
         </h3>
 
-        <p class="project-copy">
-          Search and discovery for the Solana ecosystem.
+        <p class="project-description">
+          Search and discovery
+          for the Solana ecosystem.
         </p>
 
-        <div class="project-status">
-          ● Active Development
+        <div class="project-state">
+          Active Development
         </div>
 
         <a
-          class="open-project"
+          class="enter-project"
           href="https://1age.com"
         >
-          Open Project →
+          Enter 1AGE →
         </a>
 
+        <div class="project-network">
 
-        <div class="link-zone">
-
-          <div class="link-zone-title">
+          <div class="network-title">
             1AGE Network
           </div>
 
-          <div class="link-rail">
+          <div class="icon-rail">
 
-            <a
-              class="rail-link"
-              href="https://1age.com"
-            >
-              <span class="rail-icon">↗</span>
-              <span class="rail-label">Website</span>
+            <a class="social-link" href="https://1age.com">
+              <span class="social-icon">WEB</span>
+              <span class="social-label">Website</span>
             </a>
 
             <a
-              class="rail-link"
+              class="social-link"
               href="https://github.com/1AGEthe3rd/1age"
             >
-              <span class="rail-icon">⌘</span>
-              <span class="rail-label">GitHub</span>
+              <span class="social-icon">GH</span>
+              <span class="social-label">GitHub</span>
             </a>
 
-            <div class="rail-link">
-              <span class="rail-icon">𝕏</span>
-              <span class="rail-label">X</span>
+            <div class="social-link">
+              <span class="social-icon">X</span>
+              <span class="social-label">X</span>
             </div>
 
-            <div class="rail-link">
-              <span class="rail-icon">▶</span>
-              <span class="rail-label">YouTube</span>
+            <div class="social-link">
+              <span class="social-icon">YT</span>
+              <span class="social-label">YouTube</span>
             </div>
 
           </div>
@@ -955,71 +976,61 @@
 
       </article>
 
+      <article class="project" data-project="nnb">
 
-      <!-- NNB -->
-
-      <article
-        class="project"
-        data-project="nnb"
-      >
-
-        <div class="project-number">
-          Project 002
-        </div>
-
-        <div class="project-mark">
+        <div class="project-logo">
           NNB
         </div>
 
-        <h3 class="project-title">
+        <h3 class="project-name">
           No Name Besuto
         </h3>
 
-        <p class="project-copy">
-          Design, fashion, characters and creative experiments.
+        <p class="project-description">
+          Design, fashion, characters
+          and creative experiments.
         </p>
 
-        <div class="project-status">
-          ● Building
+        <div class="project-state">
+          Building
         </div>
 
         <a
-          class="open-project"
+          class="enter-project"
           href="https://nonamebesuto.com"
         >
-          Open Project →
+          Enter NNB →
         </a>
 
+        <div class="project-network">
 
-        <div class="link-zone">
-
-          <div class="link-zone-title">
+          <div class="network-title">
             NNB Network
           </div>
 
-          <div class="link-rail">
+          <div class="icon-rail">
 
             <a
-              class="rail-link"
+              class="social-link"
               href="https://nonamebesuto.com"
             >
-              <span class="rail-icon">↗</span>
-              <span class="rail-label">Website</span>
+              <span class="social-icon">WEB</span>
+              <span class="social-label">Website</span>
             </a>
 
-            <div class="rail-link">
-              <span class="rail-icon">◎</span>
-              <span class="rail-label">Instagram</span>
+            <div class="social-link">
+              <span class="social-icon">IG</span>
+              <span class="social-label">Instagram</span>
             </div>
 
-            <div class="rail-link">
-              <span class="rail-icon">▶</span>
-              <span class="rail-label">YouTube</span>
+            <div class="social-link">
+              <span class="social-icon">YT</span>
+              <span class="social-label">YouTube</span>
             </div>
 
-            <div class="rail-link">
-              <span class="rail-icon">𝕏</span>
-              <span class="rail-label">X</span>
+            <div class="social-link">
+              <span class="social-icon">X</span>
+              <span class="social-label">X</span>
             </div>
 
           </div>
@@ -1028,235 +1039,126 @@
 
       </article>
 
+      <article class="project" data-project="online">
 
-      <!-- FUTURE -->
-
-      <article
-        class="project"
-        data-project="future"
-      >
-
-        <div class="project-number">
-          Project 003
+        <div class="project-logo">
+          1AGE
         </div>
 
-        <div class="project-mark">
-          ?
-        </div>
-
-        <h3 class="project-title">
-          Classified
+        <h3 class="project-name">
+          1AGE Online
         </h3>
 
-        <p class="project-copy">
-          A future 1AGEthe3rd project.
+        <p class="project-description">
+          A future Solana-connected
+          1AGE experience.
         </p>
 
-        <div class="project-status">
-          Dormant
+        <div class="project-state">
+          In Development
+        </div>
+
+        <div class="project-network">
+
+          <div class="network-title">
+            1AGE Online
+          </div>
+
+          <div class="icon-rail">
+
+            <div class="social-link">
+              <span class="social-icon">WEB</span>
+              <span class="social-label">Coming</span>
+            </div>
+
+            <div class="social-link">
+              <span class="social-icon">+</span>
+              <span class="social-label">Future</span>
+            </div>
+
+          </div>
+
         </div>
 
       </article>
 
+    </div>
 
-      <div class="slider-controls">
+    <div class="project-dots">
+      <span class="dot active"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+    </div>
 
-        <button
-          class="arrow-button"
-          id="projectPrev"
-          aria-label="Previous project"
-        >
-          ←
-        </button>
+    <div class="project-navigation">
 
-        <div
-          class="slider-position"
-          id="projectPosition"
-        >
-          01 / 03
-        </div>
+      <button
+        class="nav-button prev"
+        id="projectPrev"
+        aria-label="Previous project"
+      >
+        <span class="nav-arrow"></span>
+      </button>
 
-        <button
-          class="arrow-button"
-          id="projectNext"
-          aria-label="Next project"
-        >
-          →
-        </button>
-
+      <div class="project-count" id="projectCount">
+        01 / 03
       </div>
+
+      <button
+        class="nav-button next"
+        id="projectNext"
+        aria-label="Next project"
+      >
+        <span class="nav-arrow"></span>
+      </button>
 
     </div>
 
   </section>
 
-
   <div class="rule"></div>
 
-
-  <!-- MADE -->
-
-  <section class="section">
-
-    <div class="eyebrow">
-      1AGE MADE
-    </div>
-
-    <h2 class="section-title">
-      Build<br>
-      Archive.
-    </h2>
-
-    <div class="made-item">
-
-      <div class="made-number">
-        001
-      </div>
-
-      <div class="made-name">
-        Establishment of 1AGE MADE
-      </div>
-
-      <div class="made-meta">
-        Permanent creation archive
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <div class="rule"></div>
-
-
-  <!-- MEDIA -->
-
-  <section class="section">
-
-    <div class="eyebrow">
-      1AGEthe3rd Media
-    </div>
-
-    <h2 class="section-title">
-      Watch.<br>
-      Listen.<br>
-      Explore.
-    </h2>
-
-    <div class="media-window">
-
-      <div class="media-play">
-        ▶
-      </div>
-
-      <div class="media-label">
-        1AGEthe3rd TV • COMING ONLINE
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <div class="rule"></div>
-
-
-  <!-- FUTURE -->
-
-  <section class="section">
-
-    <div class="eyebrow">
-      Future
-    </div>
-
-    <h2 class="section-title">
-      Next<br>
-      Signals.
-    </h2>
-
-    <div class="future-list">
-
-      <div class="future-row">
-        <div class="future-project">
-          Project 003
-        </div>
-
-        <div class="future-state">
-          Classified
-        </div>
-      </div>
-
-      <div class="future-row">
-        <div class="future-project">
-          Project 004
-        </div>
-
-        <div class="future-state">
-          Dormant
-        </div>
-      </div>
-
-      <div class="future-row">
-        <div class="future-project">
-          Project 005
-        </div>
-
-        <div class="future-state">
-          Future
-        </div>
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <div class="rule"></div>
-
-
-  <!-- COMPANY NETWORK -->
-
-  <section class="section">
-
-    <div class="eyebrow">
-      Company Network
-    </div>
+  <section class="section follow">
 
     <h2 class="section-title">
       Follow<br>
-      The Build.
+      The Build
     </h2>
 
-    <div class="link-zone">
+    <p class="follow-copy">
+      Follow 1AGEthe3rd across the network.
+    </p>
 
-      <div class="link-rail">
+    <div class="company-socials">
+
+      <div class="icon-rail">
 
         <a
-          class="rail-link"
+          class="social-link"
           href="https://github.com/1AGEthe3rd"
         >
-          <span class="rail-icon">⌘</span>
-          <span class="rail-label">GitHub</span>
+          <span class="social-icon">GH</span>
+          <span class="social-label">GitHub</span>
         </a>
 
-        <div class="rail-link">
-          <span class="rail-icon">▶</span>
-          <span class="rail-label">YouTube</span>
+        <div class="social-link">
+          <span class="social-icon">YT</span>
+          <span class="social-label">YouTube</span>
         </div>
 
-        <div class="rail-link">
-          <span class="rail-icon">◎</span>
-          <span class="rail-label">Instagram</span>
+        <div class="social-link">
+          <span class="social-icon">IG</span>
+          <span class="social-label">Instagram</span>
         </div>
 
-        <div class="rail-link">
-          <span class="rail-icon">𝕏</span>
-          <span class="rail-label">X</span>
+        <div class="social-link">
+          <span class="social-icon">X</span>
+          <span class="social-label">X</span>
         </div>
 
-        <div class="rail-link">
-          <span class="rail-icon">✉</span>
-          <span class="rail-label">Contact</span>
+        <div class="social-link">
+          <span class="social-icon">@</span>
+          <span class="social-label">Contact</span>
         </div>
 
       </div>
@@ -1265,69 +1167,46 @@
 
   </section>
 
-
   <div class="rule"></div>
 
+  <section class="section company">
 
-  <!-- COMPANY -->
-
-  <section class="section">
-
-    <div class="eyebrow">
-      Company
-    </div>
-
-    <h2 class="section-title">
-      1AGE<br>
-      the3rd.
+    <h2 class="company-name">
+      1AGE<span class="the">the</span>3rd
     </h2>
 
-    <p class="company-copy">
-      An independent technology, media and creative company
-      building products, brands and experiments for the next
-      age of the internet.
-    </p>
-
-    <div class="company-meta">
+    <div class="company-info">
 
       <span>
-        Pacific Northwest
+        Built in the Pacific Northwest
+      </span>
+
+      <span class="solana">
+        Building on Solana
       </span>
 
       <span>
-        Technology • Media • Creative
-      </span>
-
-      <span>
-        Build the future.
+        Technology • Blockchain
+        • Media • Creative
       </span>
 
     </div>
+
+    <footer>
+      © 2026 1AGEthe3rd
+    </footer>
 
   </section>
 
-
-  <footer>
-    © 2026 1AGEthe3rd
-  </footer>
-
 </div>
 
-
 <script>
+  const rain =
+    document.getElementById("rain");
 
-  /* ---------------- RAIN ---------------- */
+  const rainCount = 75;
 
-  const rain = document.getElementById("rain");
-
-  const numberOfDrops = 50;
-
-  for (
-    let i = 0;
-    i < numberOfDrops;
-    i++
-  ) {
-
+  for (let i = 0; i < rainCount; i++) {
     const drop =
       document.createElement("span");
 
@@ -1336,89 +1215,208 @@
     drop.style.left =
       Math.random() * 100 + "%";
 
-    drop.style.top =
-      Math.random() * -100 + "%";
+    drop.style.height =
+      (38 + Math.random() * 48) + "px";
 
     drop.style.animationDuration =
-      0.8 + Math.random() * 0.9 + "s";
+      (.55 + Math.random() * .75) + "s";
 
     drop.style.animationDelay =
-      Math.random() * -2 + "s";
+      (Math.random() * -2) + "s";
 
     drop.style.opacity =
-      0.15 + Math.random() * 0.45;
+      (.30 + Math.random() * .55);
 
     rain.appendChild(drop);
-
   }
 
+  const splashZone =
+    document.getElementById("splashes");
 
-  /* ---------------- PROJECT SLIDER ---------------- */
+  const splashCount = 18;
+
+  for (let i = 0; i < splashCount; i++) {
+    const splash =
+      document.createElement("span");
+
+    splash.className = "splash";
+
+    splash.style.left =
+      Math.random() * 100 + "%";
+
+    splash.style.animationDelay =
+      (Math.random() * -2) + "s";
+
+    splash.style.animationDuration =
+      (1 + Math.random() * 1.4) + "s";
+
+    splashZone.appendChild(splash);
+  }
 
   const projects =
     document.querySelectorAll(".project");
 
-  const next =
-    document.getElementById("projectNext");
+  const dots =
+    document.querySelectorAll(".dot");
 
-  const prev =
+  const stage =
+    document.getElementById("projectStage");
+
+  const previousButton =
     document.getElementById("projectPrev");
 
-  const position =
-    document.getElementById("projectPosition");
+  const nextButton =
+    document.getElementById("projectNext");
+
+  const count =
+    document.getElementById("projectCount");
 
   let currentProject = 0;
 
-
-  function showProject(index) {
+  function showProject(index, direction = null) {
+    currentProject =
+      (index + projects.length)
+      % projects.length;
 
     projects.forEach(
-      project =>
-        project.classList.remove("active")
+      (project, projectIndex) => {
+        project.classList.toggle(
+          "active",
+          projectIndex === currentProject
+        );
+      }
     );
 
-    projects[index]
-      .classList.add("active");
+    dots.forEach(
+      (dot, dotIndex) => {
+        dot.classList.toggle(
+          "active",
+          dotIndex === currentProject
+        );
+      }
+    );
 
-    position.textContent =
-      String(index + 1).padStart(2, "0")
+    count.textContent =
+      String(currentProject + 1).padStart(2, "0")
       + " / "
       + String(projects.length).padStart(2, "0");
 
+    if (direction === "next") {
+      pulseButton(nextButton);
+    }
+
+    if (direction === "prev") {
+      pulseButton(previousButton);
+    }
   }
 
+  function pulseButton(button) {
+    button.classList.add("flash");
 
-  next.addEventListener(
+    setTimeout(
+      () => {
+        button.classList.remove("flash");
+      },
+      170
+    );
+  }
+
+  nextButton.addEventListener(
     "click",
     () => {
-
-      currentProject =
-        (currentProject + 1)
-        % projects.length;
-
-      showProject(currentProject);
-
+      showProject(
+        currentProject + 1,
+        "next"
+      );
     }
   );
 
-
-  prev.addEventListener(
+  previousButton.addEventListener(
     "click",
     () => {
-
-      currentProject =
-        (
-          currentProject
-          - 1
-          + projects.length
-        )
-        % projects.length;
-
-      showProject(currentProject);
-
+      showProject(
+        currentProject - 1,
+        "prev"
+      );
     }
   );
 
+  let touchStartX = 0;
+  let touchStartY = 0;
+  let touchEndX = 0;
+  let touchEndY = 0;
+
+  stage.addEventListener(
+    "touchstart",
+    event => {
+      touchStartX =
+        event.changedTouches[0].screenX;
+
+      touchStartY =
+        event.changedTouches[0].screenY;
+    },
+    {
+      passive: true
+    }
+  );
+
+  stage.addEventListener(
+    "touchend",
+    event => {
+      touchEndX =
+        event.changedTouches[0].screenX;
+
+      touchEndY =
+        event.changedTouches[0].screenY;
+
+      handleSwipe();
+    },
+    {
+      passive: true
+    }
+  );
+
+  function handleSwipe() {
+    const xDifference =
+      touchEndX - touchStartX;
+
+    const yDifference =
+      touchEndY - touchStartY;
+
+    if (
+      Math.abs(yDifference)
+      >
+      Math.abs(xDifference)
+    ) {
+      return;
+    }
+
+    if (
+      Math.abs(xDifference)
+      <
+      55
+    ) {
+      return;
+    }
+
+    if (
+      xDifference
+      <
+      0
+    ) {
+      showProject(
+        currentProject + 1,
+        "next"
+      );
+    }
+
+    else {
+      showProject(
+        currentProject - 1,
+        "prev"
+      );
+    }
+  }
 </script>
 
 </body>
