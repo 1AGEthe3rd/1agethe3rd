@@ -1,0 +1,1425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>1AGEthe3rd</title>
+
+  <meta
+    name="description"
+    content="1AGEthe3rd — independent technology, media and creative company."
+  >
+
+  <style>
+    :root {
+      --black: #000000;
+      --white: #f4f4ef;
+      --muted: #9b9b92;
+
+      --field: #4b5320;
+      --olive: #6b7045;
+      --fatigue: #7a8060;
+
+      --signal: #1bfd9c;
+
+      --max-width: 760px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--black);
+    }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    .page {
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .section {
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 70px 24px;
+      position: relative;
+    }
+
+    .eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--fatigue);
+      margin-bottom: 20px;
+      font-weight: 700;
+    }
+
+    .section-title {
+      font-size: clamp(34px, 11vw, 68px);
+      line-height: 0.95;
+      text-transform: uppercase;
+      letter-spacing: -0.04em;
+      font-weight: 900;
+    }
+
+    .rule {
+      height: 1px;
+      width: 100%;
+      background: rgba(244,244,239,0.18);
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+
+    /* ---------------- HERO ---------------- */
+
+    .hero {
+      min-height: 100svh;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+      background: #000;
+    }
+
+    .hero-top {
+      z-index: 6;
+      padding: 28px 22px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand-small {
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      font-size: 18px;
+    }
+
+    .hero-status {
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      color: var(--fatigue);
+      text-transform: uppercase;
+    }
+
+    .hero-center {
+      position: relative;
+      z-index: 6;
+      padding: 0 24px;
+      margin-top: auto;
+      margin-bottom: 22vh;
+    }
+
+    .hero-logo {
+      font-size: clamp(52px, 15vw, 104px);
+      line-height: 0.82;
+      letter-spacing: -0.075em;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .hero-logo span {
+      display: block;
+    }
+
+    .hero-subtitle {
+      margin-top: 26px;
+      max-width: 390px;
+      line-height: 1.45;
+      color: var(--white);
+      font-size: 15px;
+    }
+
+    .hero-location {
+      margin-top: 18px;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      color: var(--fatigue);
+      text-transform: uppercase;
+    }
+
+    /* ---------------- RAIN ---------------- */
+
+    .rain {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 3;
+      opacity: 0.34;
+    }
+
+    .drop {
+      position: absolute;
+      width: 1px;
+      height: 42px;
+      background: linear-gradient(
+        to bottom,
+        transparent,
+        rgba(255,255,255,0.5)
+      );
+
+      animation: rainFall linear infinite;
+    }
+
+    @keyframes rainFall {
+      from {
+        transform: translateY(-120px);
+      }
+
+      to {
+        transform: translateY(120vh);
+      }
+    }
+
+    /* ---------------- CITY ---------------- */
+
+    .city {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 33vh;
+      min-height: 240px;
+      z-index: 2;
+      overflow: hidden;
+    }
+
+    .skyline {
+      position: absolute;
+      bottom: 83px;
+      width: 100%;
+      height: 150px;
+    }
+
+    .building {
+      position: absolute;
+      bottom: 0;
+      background: #060606;
+      border-top: 1px solid rgba(244,244,239,0.12);
+    }
+
+    .building::after {
+      content: "";
+      position: absolute;
+      inset: 14px 12px;
+      background:
+        repeating-linear-gradient(
+          to bottom,
+          rgba(107,112,69,0.18) 0px,
+          rgba(107,112,69,0.18) 3px,
+          transparent 3px,
+          transparent 22px
+        );
+    }
+
+    .b1 {
+      left: 0;
+      width: 24%;
+      height: 95px;
+    }
+
+    .b2 {
+      left: 20%;
+      width: 24%;
+      height: 130px;
+    }
+
+    .b3 {
+      left: 43%;
+      width: 20%;
+      height: 82px;
+    }
+
+    .b4 {
+      left: 61%;
+      width: 27%;
+      height: 118px;
+    }
+
+    .b5 {
+      right: -4%;
+      width: 20%;
+      height: 75px;
+    }
+
+    .digital-sign {
+      position: absolute;
+      bottom: 140px;
+      right: 10%;
+      z-index: 3;
+      color: var(--signal);
+      border: 1px solid var(--signal);
+      padding: 8px 10px;
+      font-size: 9px;
+      letter-spacing: 0.14em;
+      background: #000;
+      box-shadow: 0 0 18px rgba(27,253,156,0.18);
+    }
+
+    .street-sign {
+      position: absolute;
+      bottom: 90px;
+      left: 8%;
+      z-index: 4;
+      font-size: 9px;
+      letter-spacing: 0.14em;
+      color: var(--white);
+    }
+
+    .road {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: 84px;
+      width: 100%;
+      background: #020202;
+      border-top: 1px solid rgba(244,244,239,0.2);
+    }
+
+    .road-line {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 37px;
+      height: 1px;
+      background:
+        repeating-linear-gradient(
+          90deg,
+          rgba(244,244,239,0.6) 0px,
+          rgba(244,244,239,0.6) 32px,
+          transparent 32px,
+          transparent 68px
+        );
+    }
+
+    .car {
+      position: absolute;
+      bottom: 24px;
+      left: -90px;
+      width: 78px;
+      height: 23px;
+      background: var(--field);
+      border-radius: 14px 18px 4px 4px;
+      animation: drive 10s linear infinite;
+    }
+
+    .car::before {
+      content: "";
+      position: absolute;
+      width: 38px;
+      height: 17px;
+      left: 18px;
+      top: -10px;
+      border-radius: 20px 20px 0 0;
+      background: var(--olive);
+    }
+
+    .car::after {
+      content: "";
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--white);
+      bottom: -5px;
+      left: 13px;
+      box-shadow: 43px 0 var(--white);
+    }
+
+    .car.second {
+      width: 60px;
+      height: 19px;
+      opacity: .6;
+      bottom: 53px;
+      animation:
+        driveReverse 15s linear infinite;
+      animation-delay: -6s;
+    }
+
+    @keyframes drive {
+      from {
+        transform: translateX(-120px);
+      }
+
+      to {
+        transform: translateX(calc(100vw + 200px));
+      }
+    }
+
+    @keyframes driveReverse {
+      from {
+        transform:
+          translateX(calc(100vw + 180px))
+          scaleX(-1);
+      }
+
+      to {
+        transform:
+          translateX(-180px)
+          scaleX(-1);
+      }
+    }
+
+    .scroll-note {
+      position: absolute;
+      right: 20px;
+      bottom: 102px;
+      z-index: 7;
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      writing-mode: vertical-rl;
+      color: var(--muted);
+    }
+
+    /* ---------------- SIGNAL ---------------- */
+
+    .signal-name {
+      margin-top: 42px;
+      font-size: 20px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .progress {
+      margin-top: 14px;
+      width: 100%;
+      height: 5px;
+      background: #111;
+      overflow: hidden;
+    }
+
+    .progress-value {
+      height: 100%;
+      width: 62%;
+      background: var(--signal);
+      box-shadow: 0 0 16px rgba(27,253,156,.38);
+    }
+
+    .signal-meta {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 12px;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      color: var(--signal);
+      text-transform: uppercase;
+    }
+
+    .signal-description {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.5;
+      max-width: 460px;
+      margin-top: 22px;
+    }
+
+    /* ---------------- PROJECTS ---------------- */
+
+    .project-slider {
+      position: relative;
+      margin-top: 48px;
+      min-height: 390px;
+    }
+
+    .project {
+      display: none;
+      animation: fadeProject .32s ease;
+    }
+
+    .project.active {
+      display: block;
+    }
+
+    @keyframes fadeProject {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .project-number {
+      font-size: 10px;
+      color: var(--fatigue);
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+
+    .project-mark {
+      min-height: 140px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 18px 0 30px;
+      font-size: clamp(48px, 14vw, 92px);
+      font-weight: 900;
+      letter-spacing: -0.07em;
+    }
+
+    .project[data-project="1age"] .project-mark {
+      color: var(--signal);
+    }
+
+    .project[data-project="nnb"] .project-mark {
+      color: var(--white);
+    }
+
+    .project-title {
+      font-size: 31px;
+      line-height: 1;
+      text-transform: uppercase;
+      letter-spacing: -0.04em;
+      font-weight: 900;
+    }
+
+    .project-copy {
+      margin-top: 14px;
+      max-width: 460px;
+      color: var(--muted);
+      line-height: 1.5;
+      font-size: 14px;
+    }
+
+    .project-status {
+      margin-top: 17px;
+      color: var(--olive);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: .18em;
+    }
+
+    .project[data-project="1age"] .project-status {
+      color: var(--signal);
+    }
+
+    .open-project {
+      margin-top: 28px;
+      display: inline-block;
+      border-bottom: 1px solid currentColor;
+      padding-bottom: 4px;
+      font-size: 12px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .slider-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 36px;
+    }
+
+    .arrow-button {
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      color: var(--white);
+      background: #000;
+      border: 1px solid var(--white);
+      cursor: pointer;
+      font-size: 22px;
+    }
+
+    .slider-position {
+      color: var(--fatigue);
+      font-size: 10px;
+      letter-spacing: .18em;
+    }
+
+    /* ---------------- LINK RAIL ---------------- */
+
+    .link-zone {
+      margin-top: 45px;
+    }
+
+    .link-zone-title {
+      font-size: 10px;
+      letter-spacing: .18em;
+      color: var(--fatigue);
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .link-rail {
+      display: flex;
+      overflow-x: auto;
+      gap: 14px;
+      padding-bottom: 12px;
+      scrollbar-width: none;
+      scroll-snap-type: x mandatory;
+    }
+
+    .link-rail::-webkit-scrollbar {
+      display: none;
+    }
+
+    .rail-link {
+      flex: 0 0 104px;
+      height: 104px;
+      border: 1px solid rgba(244,244,239,.38);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 13px;
+      scroll-snap-align: start;
+      transition: .2s ease;
+    }
+
+    .rail-link:active {
+      background: var(--field);
+    }
+
+    .rail-icon {
+      font-size: 24px;
+    }
+
+    .rail-label {
+      font-size: 9px;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+    }
+
+    /* ---------------- MADE ---------------- */
+
+    .made-item {
+      margin-top: 42px;
+    }
+
+    .made-number {
+      font-size: clamp(72px, 23vw, 145px);
+      font-weight: 900;
+      line-height: .78;
+      letter-spacing: -.08em;
+      color: var(--field);
+    }
+
+    .made-name {
+      font-size: 25px;
+      font-weight: 800;
+      margin-top: 20px;
+    }
+
+    .made-meta {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 11px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    /* ---------------- MEDIA ---------------- */
+
+    .media-window {
+      margin-top: 42px;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border: 1px solid rgba(244,244,239,.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .media-play {
+      font-size: 18px;
+      border: 1px solid white;
+      width: 62px;
+      height: 62px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+    }
+
+    .media-label {
+      position: absolute;
+      left: 12px;
+      bottom: 12px;
+      font-size: 9px;
+      letter-spacing: .16em;
+      color: var(--muted);
+    }
+
+    /* ---------------- FUTURE ---------------- */
+
+    .future-list {
+      margin-top: 35px;
+    }
+
+    .future-row {
+      min-height: 76px;
+      border-top: 1px solid rgba(244,244,239,.16);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .future-row:last-child {
+      border-bottom: 1px solid rgba(244,244,239,.16);
+    }
+
+    .future-project {
+      font-weight: 700;
+      font-size: 15px;
+      letter-spacing: -.02em;
+    }
+
+    .future-state {
+      font-size: 9px;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+      color: var(--fatigue);
+    }
+
+    /* ---------------- COMPANY ---------------- */
+
+    .company-copy {
+      margin-top: 35px;
+      font-size: 19px;
+      line-height: 1.45;
+      max-width: 550px;
+    }
+
+    .company-meta {
+      margin-top: 50px;
+      display: grid;
+      gap: 11px;
+      color: var(--muted);
+      font-size: 10px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    footer {
+      max-width: var(--max-width);
+      margin: auto;
+      padding: 24px 24px 50px;
+      color: var(--fatigue);
+      font-size: 9px;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+    }
+
+    @media (min-width: 760px) {
+      .hero-center {
+        padding-left: max(24px, calc((100vw - var(--max-width)) / 2));
+      }
+
+      .hero-top {
+        padding-left: max(24px, calc((100vw - var(--max-width)) / 2));
+        padding-right: max(24px, calc((100vw - var(--max-width)) / 2));
+      }
+    }
+
+  </style>
+</head>
+
+
+<body>
+
+<div class="page">
+
+  <!-- HERO -->
+
+  <header class="hero">
+
+    <div class="rain" id="rain"></div>
+
+    <div class="hero-top">
+      <div class="brand-small">
+        1AGEthe3rd
+      </div>
+
+      <div class="hero-status">
+        EST. PDX
+      </div>
+    </div>
+
+
+    <div class="hero-center">
+
+      <h1 class="hero-logo">
+        <span>1AGE</span>
+        <span>the3rd</span>
+      </h1>
+
+      <p class="hero-subtitle">
+        Independent technology, media and creative company
+        building products for the next age of the internet.
+      </p>
+
+      <div class="hero-location">
+        NE MLK JR BLVD • PACIFIC NORTHWEST
+      </div>
+
+    </div>
+
+
+    <div class="city">
+
+      <div class="skyline">
+
+        <div class="building b1"></div>
+        <div class="building b2"></div>
+        <div class="building b3"></div>
+        <div class="building b4"></div>
+        <div class="building b5"></div>
+
+      </div>
+
+      <div class="digital-sign">
+        1AGE • ACTIVE
+      </div>
+
+      <div class="street-sign">
+        NE MLK JR BLVD
+      </div>
+
+      <div class="road">
+
+        <div class="road-line"></div>
+
+        <div class="car"></div>
+        <div class="car second"></div>
+
+      </div>
+
+    </div>
+
+    <div class="scroll-note">
+      SCROLL ↓
+    </div>
+
+  </header>
+
+
+  <div class="rule"></div>
+
+
+  <!-- CURRENT SIGNAL -->
+
+  <section class="section">
+
+    <div class="eyebrow">
+      Current Signal
+    </div>
+
+    <h2 class="section-title">
+      Building<br>
+      Now.
+    </h2>
+
+    <div class="signal-name">
+      1AGE Search
+    </div>
+
+    <div class="progress">
+      <div class="progress-value"></div>
+    </div>
+
+    <div class="signal-meta">
+      <span>Building</span>
+      <span>Signal Active</span>
+    </div>
+
+    <p class="signal-description">
+      Search and discovery infrastructure for the Solana ecosystem.
+      Current development is focused on making Solana easier to explore,
+      understand and use.
+    </p>
+
+  </section>
+
+
+  <div class="rule"></div>
+
+
+  <!-- PROJECTS -->
+
+  <section class="section">
+
+    <div class="eyebrow">
+      1AGEthe3rd Projects
+    </div>
+
+    <h2 class="section-title">
+      Project<br>
+      Universe.
+    </h2>
+
+
+    <div class="project-slider">
+
+      <!-- 1AGE -->
+
+      <article
+        class="project active"
+        data-project="1age"
+      >
+
+        <div class="project-number">
+          Project 001
+        </div>
+
+        <div class="project-mark">
+          1AGE
+        </div>
+
+        <h3 class="project-title">
+          1AGE
+        </h3>
+
+        <p class="project-copy">
+          Search and discovery for the Solana ecosystem.
+        </p>
+
+        <div class="project-status">
+          ● Active Development
+        </div>
+
+        <a
+          class="open-project"
+          href="https://1age.com"
+        >
+          Open Project →
+        </a>
+
+
+        <div class="link-zone">
+
+          <div class="link-zone-title">
+            1AGE Network
+          </div>
+
+          <div class="link-rail">
+
+            <a
+              class="rail-link"
+              href="https://1age.com"
+            >
+              <span class="rail-icon">↗</span>
+              <span class="rail-label">Website</span>
+            </a>
+
+            <a
+              class="rail-link"
+              href="https://github.com/1AGEthe3rd/1age"
+            >
+              <span class="rail-icon">⌘</span>
+              <span class="rail-label">GitHub</span>
+            </a>
+
+            <div class="rail-link">
+              <span class="rail-icon">𝕏</span>
+              <span class="rail-label">X</span>
+            </div>
+
+            <div class="rail-link">
+              <span class="rail-icon">▶</span>
+              <span class="rail-label">YouTube</span>
+            </div>
+
+          </div>
+
+        </div>
+
+      </article>
+
+
+      <!-- NNB -->
+
+      <article
+        class="project"
+        data-project="nnb"
+      >
+
+        <div class="project-number">
+          Project 002
+        </div>
+
+        <div class="project-mark">
+          NNB
+        </div>
+
+        <h3 class="project-title">
+          No Name Besuto
+        </h3>
+
+        <p class="project-copy">
+          Design, fashion, characters and creative experiments.
+        </p>
+
+        <div class="project-status">
+          ● Building
+        </div>
+
+        <a
+          class="open-project"
+          href="https://nonamebesuto.com"
+        >
+          Open Project →
+        </a>
+
+
+        <div class="link-zone">
+
+          <div class="link-zone-title">
+            NNB Network
+          </div>
+
+          <div class="link-rail">
+
+            <a
+              class="rail-link"
+              href="https://nonamebesuto.com"
+            >
+              <span class="rail-icon">↗</span>
+              <span class="rail-label">Website</span>
+            </a>
+
+            <div class="rail-link">
+              <span class="rail-icon">◎</span>
+              <span class="rail-label">Instagram</span>
+            </div>
+
+            <div class="rail-link">
+              <span class="rail-icon">▶</span>
+              <span class="rail-label">YouTube</span>
+            </div>
+
+            <div class="rail-link">
+              <span class="rail-icon">𝕏</span>
+              <span class="rail-label">X</span>
+            </div>
+
+          </div>
+
+        </div>
+
+      </article>
+
+
+      <!-- FUTURE -->
+
+      <article
+        class="project"
+        data-project="future"
+      >
+
+        <div class="project-number">
+          Project 003
+        </div>
+
+        <div class="project-mark">
+          ?
+        </div>
+
+        <h3 class="project-title">
+          Classified
+        </h3>
+
+        <p class="project-copy">
+          A future 1AGEthe3rd project.
+        </p>
+
+        <div class="project-status">
+          Dormant
+        </div>
+
+      </article>
+
+
+      <div class="slider-controls">
+
+        <button
+          class="arrow-button"
+          id="projectPrev"
+          aria-label="Previous project"
+        >
+          ←
+        </button>
+
+        <div
+          class="slider-position"
+          id="projectPosition"
+        >
+          01 / 03
+        </div>
+
+        <button
+          class="arrow-button"
+          id="projectNext"
+          aria-label="Next project"
+        >
+          →
+        </button>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <div class="rule"></div>
+
+
+  <!-- MADE -->
+
+  <section class="section">
+
+    <div class="eyebrow">
+      1AGE MADE
+    </div>
+
+    <h2 class="section-title">
+      Build<br>
+      Archive.
+    </h2>
+
+    <div class="made-item">
+
+      <div class="made-number">
+        001
+      </div>
+
+      <div class="made-name">
+        Establishment of 1AGE MADE
+      </div>
+
+      <div class="made-meta">
+        Permanent creation archive
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <div class="rule"></div>
+
+
+  <!-- MEDIA -->
+
+  <section class="section">
+
+    <div class="eyebrow">
+      1AGEthe3rd Media
+    </div>
+
+    <h2 class="section-title">
+      Watch.<br>
+      Listen.<br>
+      Explore.
+    </h2>
+
+    <div class="media-window">
+
+      <div class="media-play">
+        ▶
+      </div>
+
+      <div class="media-label">
+        1AGEthe3rd TV • COMING ONLINE
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <div class="rule"></div>
+
+
+  <!-- FUTURE -->
+
+  <section class="section">
+
+    <div class="eyebrow">
+      Future
+    </div>
+
+    <h2 class="section-title">
+      Next<br>
+      Signals.
+    </h2>
+
+    <div class="future-list">
+
+      <div class="future-row">
+        <div class="future-project">
+          Project 003
+        </div>
+
+        <div class="future-state">
+          Classified
+        </div>
+      </div>
+
+      <div class="future-row">
+        <div class="future-project">
+          Project 004
+        </div>
+
+        <div class="future-state">
+          Dormant
+        </div>
+      </div>
+
+      <div class="future-row">
+        <div class="future-project">
+          Project 005
+        </div>
+
+        <div class="future-state">
+          Future
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <div class="rule"></div>
+
+
+  <!-- COMPANY NETWORK -->
+
+  <section class="section">
+
+    <div class="eyebrow">
+      Company Network
+    </div>
+
+    <h2 class="section-title">
+      Follow<br>
+      The Build.
+    </h2>
+
+    <div class="link-zone">
+
+      <div class="link-rail">
+
+        <a
+          class="rail-link"
+          href="https://github.com/1AGEthe3rd"
+        >
+          <span class="rail-icon">⌘</span>
+          <span class="rail-label">GitHub</span>
+        </a>
+
+        <div class="rail-link">
+          <span class="rail-icon">▶</span>
+          <span class="rail-label">YouTube</span>
+        </div>
+
+        <div class="rail-link">
+          <span class="rail-icon">◎</span>
+          <span class="rail-label">Instagram</span>
+        </div>
+
+        <div class="rail-link">
+          <span class="rail-icon">𝕏</span>
+          <span class="rail-label">X</span>
+        </div>
+
+        <div class="rail-link">
+          <span class="rail-icon">✉</span>
+          <span class="rail-label">Contact</span>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <div class="rule"></div>
+
+
+  <!-- COMPANY -->
+
+  <section class="section">
+
+    <div class="eyebrow">
+      Company
+    </div>
+
+    <h2 class="section-title">
+      1AGE<br>
+      the3rd.
+    </h2>
+
+    <p class="company-copy">
+      An independent technology, media and creative company
+      building products, brands and experiments for the next
+      age of the internet.
+    </p>
+
+    <div class="company-meta">
+
+      <span>
+        Pacific Northwest
+      </span>
+
+      <span>
+        Technology • Media • Creative
+      </span>
+
+      <span>
+        Build the future.
+      </span>
+
+    </div>
+
+  </section>
+
+
+  <footer>
+    © 2026 1AGEthe3rd
+  </footer>
+
+</div>
+
+
+<script>
+
+  /* ---------------- RAIN ---------------- */
+
+  const rain = document.getElementById("rain");
+
+  const numberOfDrops = 50;
+
+  for (
+    let i = 0;
+    i < numberOfDrops;
+    i++
+  ) {
+
+    const drop =
+      document.createElement("span");
+
+    drop.className = "drop";
+
+    drop.style.left =
+      Math.random() * 100 + "%";
+
+    drop.style.top =
+      Math.random() * -100 + "%";
+
+    drop.style.animationDuration =
+      0.8 + Math.random() * 0.9 + "s";
+
+    drop.style.animationDelay =
+      Math.random() * -2 + "s";
+
+    drop.style.opacity =
+      0.15 + Math.random() * 0.45;
+
+    rain.appendChild(drop);
+
+  }
+
+
+  /* ---------------- PROJECT SLIDER ---------------- */
+
+  const projects =
+    document.querySelectorAll(".project");
+
+  const next =
+    document.getElementById("projectNext");
+
+  const prev =
+    document.getElementById("projectPrev");
+
+  const position =
+    document.getElementById("projectPosition");
+
+  let currentProject = 0;
+
+
+  function showProject(index) {
+
+    projects.forEach(
+      project =>
+        project.classList.remove("active")
+    );
+
+    projects[index]
+      .classList.add("active");
+
+    position.textContent =
+      String(index + 1).padStart(2, "0")
+      + " / "
+      + String(projects.length).padStart(2, "0");
+
+  }
+
+
+  next.addEventListener(
+    "click",
+    () => {
+
+      currentProject =
+        (currentProject + 1)
+        % projects.length;
+
+      showProject(currentProject);
+
+    }
+  );
+
+
+  prev.addEventListener(
+    "click",
+    () => {
+
+      currentProject =
+        (
+          currentProject
+          - 1
+          + projects.length
+        )
+        % projects.length;
+
+      showProject(currentProject);
+
+    }
+  );
+
+</script>
+
+</body>
+</html>
