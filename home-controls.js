@@ -3,10 +3,10 @@
  const $=selector=>document.querySelector(selector),brand=$('.brand'),wings=$('.header-wings');
  let group='closed',links={socials:[],contact_email:null};
  const paths={social:'<circle cx="20" cy="19" r="6"/><circle cx="44" cy="19" r="6"/><circle cx="32" cy="43" r="6"/><path d="m24 22 6 15m10-15-6 15M26 19h12"/>',about:'<circle cx="32" cy="32" r="24"/><path d="M32 29v18M32 18v2"/>',contact:'<rect x="8" y="14" width="48" height="36" rx="6"/><path d="m9 16 23 18 23-18"/>'};
- document.body.insertAdjacentHTML('beforeend','<dialog class="header-contact"><form method="dialog"><button aria-label="Close contact">×</button></form><h2>Contact 1AGE</h2><p class="contact-copy"></p><a class="contact-link" hidden></a><a href="/updates/">Development updates ↗</a></dialog>');
+ document.body.insertAdjacentHTML('beforeend','<dialog class="header-contact"><form method="dialog"><button aria-label="Close contact">×</button></form><h2>Contact 1AGEthe3rd</h2><p class="contact-copy"></p><a class="contact-link" hidden></a><a href="/updates/">Development updates ↗</a></dialog>');
  function contact(){const a=$('.contact-link');a.hidden=!links.contact_email;$('.contact-copy').textContent=links.contact_email?'Get in touch.':'Official contact details will appear here.';if(links.contact_email){a.textContent=links.contact_email;a.href='mailto:'+links.contact_email;}$('.header-contact').showModal();}
  function header(next){
-  group=next;if(!brand||!wings)return;wings.hidden=next==='closed';wings.replaceChildren();brand.setAttribute('aria-expanded',String(next!=='closed'));brand.querySelector('img').src=next==='closed'?'/assets/1age-logo.svg':'/assets/1age-logo-active.svg';
+  group=next;if(!brand||!wings)return;wings.hidden=next==='closed';wings.replaceChildren();brand.setAttribute('aria-expanded',String(next!=='closed'));brand.querySelector('img').src=next==='closed'?'/assets/1agethe3rd-logo.png':'/assets/1agethe3rd-logo.png';
   if(next==='closed')return;
   const items=next==='social'?links.socials:[{name:'Social',icon:'social',action:()=>header('social')},{name:'About',icon:'about',url:'/about/'},{name:'Contact',icon:'contact',action:contact},{name:'Help',symbol:'?',action:()=>document.querySelector('.gesture-guide')?.showModal()}];
   items.forEach((item,index)=>{const node=document.createElement(item.url?'a':'button');node.className='header-planet';node.style.setProperty('--slot',String((index%2?-1:1)*(Math.floor(index/2)+1)));
@@ -18,7 +18,7 @@
  brand?.addEventListener('click',()=>header(group==='closed'?'main':group==='social'?'main':'closed'));brand?.addEventListener('keydown',e=>{if(e.key==='Escape')header('closed');});
  fetch('/data/header-links.json').then(r=>{if(!r.ok)throw Error();return r.json();}).then(data=>{links.socials=(data.socials||[]).filter(item=>item&&typeof item.name==='string').map(item=>{let url=null;try{if(new URL(item.url).protocol==='https:')url=item.url;}catch(_){}return {name:item.name,symbol:item.symbol||item.name[0],url};});links.contact_email=typeof data.contact_email==='string'&&/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.contact_email)?data.contact_email:null;if(group==='social')header('social');}).catch(()=>{links.socials=[{name:'GitHub',symbol:'GH',url:'https://github.com/1AGEthe3rd/1age'}];});
  const scene=$('.world-scene'),globe=$('.world-globe');if(!scene||!globe)return;
- const orbit=$('.project-orbit'),entry=$('.world-entry'),planets=[...orbit.querySelectorAll('.project-planet')],slugs=['page','space','games','exchange','quest','cash'];
+ const orbit=$('.project-orbit'),entry=$('.world-entry'),planets=[...orbit.querySelectorAll('.project-planet')],slugs=['1age','nnb','nlc','solroad','studio','projects'];
  let selected=null,highlight=false,hover=false,drag=null,dragged=false,multi=false;const touches=new Set();
  globe.insertAdjacentHTML('beforeend','<span class="world-letter" aria-hidden="true">1AGE World</span><img class="project-peek" alt="" hidden>');
  scene.insertAdjacentHTML('beforeend','<button class="preview-expand" type="button" aria-label="Enlarge selected project preview" aria-haspopup="dialog" hidden>⤢</button>');
@@ -45,3 +45,6 @@
 
  new ResizeObserver(fit).observe(scene);fit();sync();
 })();
+
+// 1AGEthe3rd Build 001: style existing ME control when present.
+(()=>{const mark=()=>document.querySelectorAll('button,a').forEach(el=>{const label=(el.getAttribute('aria-label')||el.textContent||'').trim();if(/^me$/i.test(label))el.classList.add('me-signal-green');});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',mark,{once:true});else mark();new MutationObserver(mark).observe(document.body,{childList:true,subtree:true});})();
