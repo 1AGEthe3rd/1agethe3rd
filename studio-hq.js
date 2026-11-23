@@ -69,7 +69,7 @@ $("#brand-button").addEventListener("click",showPortfolio);
 window.addEventListener("keydown",e=>{
  if(e.key==="Escape"&&!modal.hidden)closePanel();
  if(e.key.toLowerCase()==="m"&&modal.hidden)showPortfolio();
- if((e.key.toLowerCase()==="e"||e.key==="Enter")&&modal.hidden&&document.activeElement===document.body)showProject(current);
+ if((e.key.toLowerCase()==="e"||e.key==="Enter")&&modal.hidden&&(document.activeElement===document.body||document.activeElement===stage))showProject(current);
 });
 focusProject(0);
 if (!renderer) {
