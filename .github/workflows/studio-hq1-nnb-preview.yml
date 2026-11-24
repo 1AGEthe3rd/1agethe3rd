@@ -37,6 +37,8 @@ jobs:
               try {
                 await page.goto('http://127.0.0.1:4173/',{waitUntil:'domcontentloaded',timeout:30000});
                 await page.waitForTimeout(1500);
+                const guide=page.locator('dialog.gesture-guide');
+                if(await guide.isVisible())await page.locator('[data-dismiss-guide]').click();
                 const order=await page.locator('.project-planet').evaluateAll(nodes=>nodes.map(el=>el.dataset.name));
                 if(order.join(',')!=='1AGE,HQ1,HQ2,NLC,NNB,SMIFF') {console.error('Unexpected dial order',order);failed=true;}
                 for (const [name,index,expected] of [
