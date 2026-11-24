@@ -196,8 +196,7 @@
   dragScroll(track);dragScroll(projectStrip);
   const worldDialog = document.querySelector('#world-entry-dialog');
   document.querySelectorAll('[data-enter-world]').forEach(button => button.addEventListener('click', () => {
-    if (worldDialog?.showModal) worldDialog.showModal();
-    else window.location.assign('/world/#desktop-entry');
+    window.location.assign('https://1age.world/');
   }));
   document.querySelector('[data-browse-projects]')?.addEventListener('click', () => {
     worldDialog.close();
