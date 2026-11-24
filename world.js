@@ -17,36 +17,16 @@
   let selected = -1, animation = 0;
   const touchPointers=new Set();
   let suppressOrbitClick=false;
-  // Previews describe the current project directions and link to readable pages.
-  const previews = [
-    {name:'1AGE Page', description:'Your identity across 1AGE.', cards:[
-      ['Identity','One profile across the ecosystem','Profiles and a persistent identity are in development.','/ecosystem/#page'],
-      ['Messages','A place for direct connection','Messaging is part of the 1AGE Page direction.','/ecosystem/#page'],
-      ['Personal rooms','A place of your own','Customizable personal World rooms are planned.','/world/']]},
-    {name:'1AGE Space', description:'A social destination for the Solana community.', cards:[
-      ['Social','Meet through 1AGE Space','The Solana social network is in development.','/ecosystem/#space'],
-      ['World','A shared social environment','A connected gathering place is planned inside World.','/world/'],
-      ['Development','Follow the ecosystem taking shape','Read the latest published development notes.','/updates/']]},
-    {name:'1AGE Games', description:'Discover games and follow new worlds in development.', cards:[
-      ['No Name Besuto','Train. Explore. Build your fighter.','The in-house fighter lifestyle game is in development.','/ecosystem/#games'],
-      ['Discovery','Find your next game','Explore the gaming direction and the growing Solana directory.','/ecosystem/#games'],
-      ['1AGEWorld','Movement that feels like play','Walking, flying and touch controls work in the native environment.','/world/']]},
-    {name:'1AGE Exchange', description:'Commerce and payments across the ecosystem.', cards:[
-      ['Marketplace','A place to exchange','The marketplace is in development, connected to 1AGE Page identity.','/ecosystem/#exchange'],
-      ['1AGE Pay','One checkout direction','Ecosystem payments are planned through 1AGE Exchange.','/plus/'],
-      ['Membership','1AGE Plus is taking shape','Learn about the membership direction. Payments are not open yet.','/plus/']]},
-    {name:'1AGE Quest', description:'Learn, participate and contribute.', cards:[
-      ['Learning','Explore something new','Interactive learning is part of the Quest direction.','/ecosystem/#quest'],
-      ['Participation','Discover ways to contribute','Quest experiences and participation tools are in development.','/ecosystem/#quest'],
-      ['Discovery','Get to know the ecosystem','Browse the current collection of Solana projects and tools.','/directory/']]},
-    {name:'1AGE Cash', description:'Building 1AGE should feel like playing 1AGE.', cards:[
-      ['1AGE.Desktop','Your cosmic workspace','The installed creator home shares the visual language of World.','/ecosystem/#design'],
-      ['1AGEWorld','Walk. Fly. Create.','The working World foundation runs on ThinkPad and Chuwi.','/world/'],
-      ['Development','See what is being built','Follow progress across the web and native creator environment.','/updates/']]}
-  ];
+  const previews = planets.map(planet => ({
+    name: planet.dataset.name,
+    description: planet.dataset.description,
+    cards: [],
+  }));
   function showPreview(index) {
-    window.dispatchEvent?.(new CustomEvent('1age-project-preview',{detail:index}));
     if (selected === index) return;
+    window.dispatchEvent?.(new CustomEvent('1age-project-preview',{detail:index}));
+    const ticker = document.querySelector('#studio-ticker');
+    if (ticker) ticker.textContent = previews[index].description;
     selected = index;
     projectButtons.forEach(button => button.setAttribute('aria-pressed', String(Number(button.dataset.project) === index)));
     planets.forEach((planet, i) => {
@@ -72,7 +52,7 @@
     track.scrollLeft = 0;
   }
   function nearestIndex(value) {
-    return ((Math.round((Math.PI - value) / step) % planets.length) + planets.length) % planets.length;
+    return ((Math.round(-value / step) % planets.length) + planets.length) % planets.length;
   }
   function layout() {
     const rx = orbit.clientWidth / 2, ry = orbit.clientHeight / 2;
@@ -80,7 +60,7 @@
       const a = -Math.PI / 2 + i * step + angle;
       planet.dataset.upper=String(Math.sin(a)<-.2);
       const compact=window.matchMedia('(orientation:landscape) and (max-height:600px)').matches;
-      const concealed=compact&&Math.abs(Math.cos(a)*rx)<globe.clientWidth/2+orbit.clientHeight*.10+12;planet.dataset.concealed=String(concealed);planet.tabIndex=concealed?-1:0;planet.setAttribute('aria-hidden',String(concealed));
+      const concealed=compact&&Math.sin(a)>-.75&&Math.abs(Math.cos(a)*rx)<globe.clientWidth/2+orbit.clientHeight*.10+12;planet.dataset.concealed=String(concealed);planet.tabIndex=concealed?-1:0;planet.setAttribute('aria-hidden',String(concealed));
       planet.style.setProperty('--x', `${Math.cos(a) * rx}px`);
       planet.style.setProperty('--y', `${Math.sin(a) * ry}px`);
     });
@@ -100,11 +80,11 @@
     cancelAnimationFrame(animation);
     targetAngle = destination;
     const from = angle, to = targetAngle, started = performance.now();
-    showPreview(nearestIndex(to));
     function tick(now) {
       const t = reduced.matches ? 1 : Math.min(1, (now - started) / 550);
       angle = from + (to - from) * (1 - Math.pow(1 - t, 3)); layout();
       if (t < 1) animation = requestAnimationFrame(tick);
+      else showPreview(nearestIndex(to));
     }
     animation = requestAnimationFrame(tick);
   }
@@ -143,17 +123,23 @@
     const link = gesture.link; gesture = null;
     suppressOrbitClick=true;
     if (scene.hasPointerCapture(event.pointerId)) scene.releasePointerCapture(event.pointerId);
-    if (!moved && link && !link.dataset.held) window.location.assign(link.href);
-    else if (moved) showPreview(nearestIndex(angle));
+    if (!moved && link && !link.dataset.held) activate(link);
+    else if (moved) animateTo(Math.round(angle/step)*step);
   });
   function cancel() { gesture = null; moved = true; targetAngle = angle; }
   scene.addEventListener('pointercancel', event=>{touchPointers.delete(event.pointerId);suppressOrbitClick=true;cancel();});
   scene.addEventListener('lostpointercapture', () => { gesture = null; });
+  function activate(link) {
+    if (link.dataset.previewOnly) {
+      const desired = -Number(link.dataset.slot)*step;
+      animateTo(angle + Math.atan2(Math.sin(desired-angle), Math.cos(desired-angle)));
+    } else window.location.assign(link.href);
+  }
   orbit.addEventListener('dragstart',event=>event.preventDefault());
   orbit.addEventListener('click', event => {
     if(event.detail>0&&suppressOrbitClick){event.preventDefault();suppressOrbitClick=false;return;}
     const link=event.target?.closest('.project-planet');
-    if(link){event.preventDefault();if(!link.dataset.held)window.location.assign(link.href);}
+    if(link){event.preventDefault();if(!link.dataset.held)activate(link);}
   });
   window.addEventListener('1age-orbit-step',e=>snap(e.detail));
   orbit.addEventListener('keydown', event => {
@@ -169,7 +155,7 @@
     open=true;orbit.hidden=false;globe.setAttribute('aria-expanded','true');
     document.querySelectorAll('[data-rotate]').forEach(arrow => {arrow.disabled=false;});
     const index = Number(button.dataset.project);
-    const desired = Math.PI-index*step;
+    const desired = -index*step;
     const shortest = Math.atan2(Math.sin(desired-angle), Math.cos(desired-angle));
     animateTo(angle+shortest);
   }));
