@@ -3,7 +3,7 @@
  const $=selector=>document.querySelector(selector),brand=$('.brand'),wings=$('.header-wings');
  let group='closed',links={socials:[],contact_email:null};
  const paths={social:'<circle cx="20" cy="19" r="6"/><circle cx="44" cy="19" r="6"/><circle cx="32" cy="43" r="6"/><path d="m24 22 6 15m10-15-6 15M26 19h12"/>',about:'<circle cx="32" cy="32" r="24"/><path d="M32 29v18M32 18v2"/>',contact:'<rect x="8" y="14" width="48" height="36" rx="6"/><path d="m9 16 23 18 23-18"/>'};
- document.body.insertAdjacentHTML('beforeend','<dialog class="header-contact"><form method="dialog"><button aria-label="Close contact">×</button></form><h2>Contact 1AGEthe3rd</h2><p class="contact-copy"></p><a class="contact-link" hidden></a><a href="/updates/">Development updates ↗</a></dialog>');
+ document.body.insertAdjacentHTML('beforeend','<dialog class="header-contact"><form method="dialog"><button aria-label="Close contact">×</button></form><h2>Contact 1AGE I I I</h2><p class="contact-copy"></p><a class="contact-link" hidden></a><a href="/updates/">Development updates ↗</a></dialog>');
  function contact(){const a=$('.contact-link');a.hidden=!links.contact_email;$('.contact-copy').textContent=links.contact_email?'Get in touch.':'Official contact details will appear here.';if(links.contact_email){a.textContent=links.contact_email;a.href='mailto:'+links.contact_email;}$('.header-contact').showModal();}
  function header(next){
   group=next;if(!brand||!wings)return;wings.hidden=next==='closed';wings.replaceChildren();brand.setAttribute('aria-expanded',String(next!=='closed'));brand.querySelector('img').src=next==='closed'?'/assets/1agethe3rd-logo.png':'/assets/1agethe3rd-logo.png';
