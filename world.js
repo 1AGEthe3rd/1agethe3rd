@@ -24,7 +24,7 @@
   }));
   function showPreview(index) {
     if (selected === index) return;
-    window.dispatchEvent?.(new CustomEvent('1age-orbit-selection',{detail:index}));
+    window.dispatchEvent?.(new CustomEvent('1age-project-preview',{detail:index}));
     const ticker = document.querySelector('#studio-ticker');
     if (ticker) ticker.textContent = previews[index].description;
     selected = index;
@@ -55,22 +55,18 @@
     return ((Math.round(-value / step) % planets.length) + planets.length) % planets.length;
   }
   function layout() {
-    const rx=orbit.clientWidth/2,ry=orbit.clientHeight/2;
-    if(rx<=0||ry<=0)return;
-    planets.forEach((planet,i)=>{
-      const a=Math.PI/2+i*step+angle,depth=Math.sin(a);
-      planet.dataset.upper=String(depth<-.2);
-      planet.dataset.concealed='false';planet.tabIndex=0;planet.removeAttribute('aria-hidden');
-      planet.style.setProperty('--x',Math.cos(a)*rx+'px');
-      planet.style.setProperty('--y',depth*ry+'px');
-      planet.style.setProperty('--depth-scale',(.76+(depth+1)*.15).toFixed(3));
-      planet.style.setProperty('--orbit-layer',depth>=0?'7':'2');
+    const rx = orbit.clientWidth / 2, ry = orbit.clientHeight / 2;
+    planets.forEach((planet, i) => {
+      const a = -Math.PI / 2 + i * step + angle;
+      planet.dataset.upper=String(Math.sin(a)<-.2);
+      const compact=window.matchMedia('(orientation:landscape) and (max-height:600px)').matches;
+      const concealed=compact&&Math.sin(a)>-.75&&Math.abs(Math.cos(a)*rx)<globe.clientWidth/2+orbit.clientHeight*.10+12;planet.dataset.concealed=String(concealed);planet.tabIndex=concealed?-1:0;planet.setAttribute('aria-hidden',String(concealed));
+      planet.style.setProperty('--x', `${Math.cos(a) * rx}px`);
+      planet.style.setProperty('--y', `${Math.sin(a) * ry}px`);
     });
-    showPreview(nearestIndex(angle));
   }
   function snap(screenDirection) {
     if (!open) return;
-    window.dispatchEvent(new Event('1age-orbit-rotating'));
     // At the front/bottom of the orbit, move planets in the arrow's screen direction.
     const direction = -screenDirection;
     cancelAnimationFrame(animation);
@@ -110,14 +106,16 @@
                               (event.clientY-box.top-box.height/2)/(box.height/2));
     if (!link && (radius < .72 || radius > 1.30)) return;
     cancelAnimationFrame(animation); moved = false;
-    gesture = {id:event.pointerId,x:event.clientX,y:event.clientY,lastX:event.clientX,pending:0,link,touch:event.pointerType==='touch'};
+    gesture = {id:event.pointerId, x:event.clientX, y:event.clientY, last:pointAngle(event), pending:0, link,touch:event.pointerType==='touch'};
     scene.setPointerCapture(event.pointerId);
   });
   scene.addEventListener('pointermove', event => {
     if (!gesture || event.pointerId !== gesture.id) return;
-    gesture.pending -= (event.clientX-gesture.lastX)/Math.max(100,orbit.clientWidth*.25);gesture.lastX=event.clientX;
+    const now = pointAngle(event);
+    gesture.pending += Math.atan2(Math.sin(now-gesture.last), Math.cos(now-gesture.last));
+    gesture.last = now;
     if (Math.hypot(event.clientX-gesture.x,event.clientY-gesture.y)>10) moved = true;
-    if (moved) { window.dispatchEvent(new Event('1age-orbit-rotating'));angle += gesture.pending; gesture.pending = 0; targetAngle = angle; layout(); }
+    if (moved) { angle += gesture.pending; gesture.pending = 0; targetAngle = angle; layout(); }
   });
   scene.addEventListener('pointerup', event => {
     if(event.pointerType==='touch')touchPointers.delete(event.pointerId);
@@ -211,7 +209,7 @@
       orbit.focus({preventScroll:true});
     }
   });
-  window.addEventListener('1age-layout-change',layout);new ResizeObserver(layout).observe(orbit); layout(); showPreview(nearestIndex(angle));
+  new ResizeObserver(layout).observe(orbit); layout(); showPreview(nearestIndex(angle));
   const texture = document.querySelector('.globe-texture');
   // Project one continuous world map onto the sphere. No atlas handoff or fade.
   function movingGlobe() {
