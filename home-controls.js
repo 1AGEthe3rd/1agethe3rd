@@ -18,16 +18,51 @@
  brand?.addEventListener('click',()=>header(group==='closed'?'main':group==='social'?'main':'closed'));brand?.addEventListener('keydown',e=>{if(e.key==='Escape')header('closed');});
  fetch('/data/header-links.json').then(r=>{if(!r.ok)throw Error();return r.json();}).then(data=>{links.socials=(data.socials||[]).filter(item=>item&&typeof item.name==='string').map(item=>{let url=null;try{if(new URL(item.url).protocol==='https:')url=item.url;}catch(_){}return {name:item.name,symbol:item.symbol||item.name[0],url};});links.contact_email=typeof data.contact_email==='string'&&/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.contact_email)?data.contact_email:null;if(group==='social')header('social');}).catch(()=>{links.socials=[{name:'GitHub',symbol:'GH',url:'https://github.com/1AGEthe3rd/1age'}];});
  const scene=$('.world-scene'),globe=$('.world-globe');if(!scene||!globe)return;
- const orbit=$('.project-orbit'),entry=$('.world-entry'),planets=[...orbit.querySelectorAll('.project-planet')],slugs=['1age','nnb','nlc','solroad','studio','projects'];
- let selected=null,highlight=false,hover=false,drag=null,dragged=false,multi=false;const touches=new Set();
+ const orbit=$('.project-orbit'),entry=$('.world-entry'),planets=[...orbit.querySelectorAll('.project-planet')];
+ let selected=null,liveFrame,highlight=false,hover=false,drag=null,dragged=false,multi=false;const touches=new Set();
  globe.insertAdjacentHTML('beforeend','<span class="world-letter" aria-hidden="true">1AGE World</span><img class="project-peek" alt="" hidden>');
  scene.insertAdjacentHTML('beforeend','<button class="preview-expand" type="button" aria-label="Enlarge selected project preview" aria-haspopup="dialog" hidden>⤢</button>');
  document.body.insertAdjacentHTML('beforeend','<dialog class="preview-view" aria-label="Enlarged project preview"><img alt=""><form method="dialog"><button aria-label="Close enlarged preview">×</button></form></dialog><dialog class="gesture-guide" aria-labelledby="gesture-guide-title"><h2 id="gesture-guide-title">Your World, one screen.</h2><div class="gesture-visual" aria-hidden="true">← <span class="demo-globe">✦</span> →</div><p>Drag the globe to turn it.<br>Swipe the planets to explore.<br>Press a planet for a glimpse. Tap to open.<br>Hold for options. L / R open more destinations.<br>Tap the globe to return, then tap again to reveal Enter.</p><label><input type="checkbox" id="hide-gesture-guide"> Don’t show again</label><button type="button" data-dismiss-guide>Let’s explore</button></dialog>');
  const peek=globe.querySelector('.project-peek'),expand=$('.preview-expand'),viewer=$('.preview-view'),guide=$('.gesture-guide');
- function sync(){const preview=selected!==null;scene.classList.toggle('showing-peek',preview);scene.classList.toggle('globe-selected',!preview&&highlight);scene.classList.toggle('globe-hover',!preview&&hover);peek.hidden=expand.hidden=!preview;entry.hidden=preview;globe.setAttribute('aria-pressed',String(!preview&&highlight));globe.setAttribute('aria-label',preview?'Project preview. Press to return to 1AGEWorld.':'1AGEWorld. Drag to turn; press to highlight and reveal Enter.');planets.forEach((node,i)=>node.classList.toggle('is-selected',i===selected));}
- function reset(){selected=null;highlight=false;sync();}
- window.addEventListener('1age-project-preview',event=>{if(!slugs[event.detail])return;selected=event.detail;highlight=false;peek.src=`/assets/world-previews/${slugs[selected]}.svg`;peek.alt=`${slugs[selected]} virtual destination concept`;sync();});
- expand.addEventListener('click',()=>{if(selected===null)return;viewer.querySelector('img').src=peek.src;viewer.querySelector('img').alt=peek.alt;viewer.showModal();});
+ function sync(){const preview=selected!==null;scene.classList.toggle('showing-peek',preview);scene.classList.toggle('globe-selected',!preview&&highlight);scene.classList.toggle('globe-hover',!preview&&hover);peek.hidden=!preview||Boolean(liveFrame);expand.hidden=!preview;entry.hidden=preview;globe.setAttribute('aria-pressed',String(!preview&&highlight));globe.setAttribute('aria-label',preview?'Project preview. Press to return to 1AGEWorld.':'1AGEWorld. Drag to turn; press to highlight and reveal Enter.');planets.forEach((node,i)=>node.classList.toggle('is-selected',i===selected));}
+ function reset(){selected=null;highlight=false;liveFrame?.remove();liveFrame=null;sync();}
+ function previewFrame(planet, className) {
+   const frame = document.createElement('iframe');
+   frame.className = className;
+   frame.title = planet.dataset.name + ' 3D preview';
+   frame.src = planet.dataset.preview;
+   frame.tabIndex = -1;
+   frame.setAttribute('aria-hidden', 'true');
+   return frame;
+ }
+ function showProject(index) {
+   const planet = planets[index];
+   if (!planet) return;
+   selected = index;
+   highlight = false;
+   liveFrame?.remove();
+   liveFrame = null;
+   sync();
+   if (planet.dataset.media === 'frame') {
+     peek.hidden = true;
+     liveFrame = previewFrame(planet, 'project-live');
+     globe.append(liveFrame);
+   } else {
+     peek.src = planet.dataset.preview;
+     peek.alt = planet.dataset.name + ' concept preview';
+   }
+ }
+ window.addEventListener('1age-project-preview', event => showProject(event.detail));
+ expand.addEventListener('click', () => {
+   if (selected === null) return;
+   const planet = planets[selected];
+   const enlargedImage = viewer.querySelector('img');
+   enlargedImage.hidden = planet.dataset.media === 'frame';
+   if (enlargedImage.hidden) enlargedImage.after(previewFrame(planet, 'project-live-expanded'));
+   else { enlargedImage.src = peek.src; enlargedImage.alt = peek.alt; }
+   viewer.showModal();
+ });
+ viewer.addEventListener('close', () => viewer.querySelector('iframe')?.remove());
  for(const node of [globe,entry]){node.addEventListener('pointerenter',e=>{if(e.pointerType==='mouse'){hover=true;sync();}});node.addEventListener('pointerleave',e=>{if(!e.relatedTarget?.closest('.world-globe,.world-entry')){hover=false;sync();}});}
  globe.addEventListener('pointerdown',e=>{if(e.pointerType==='touch'){touches.add(e.pointerId);hover=false;}if(touches.size>1){drag=null;multi=true;scene.classList.remove('globe-pressed');return;}if(e.button!==0)return;multi=false;dragged=false;drag={id:e.pointerId,x:e.clientX,start:e.clientX};if(selected===null)scene.classList.add('globe-pressed');globe.setPointerCapture(e.pointerId);});
  globe.addEventListener('pointermove',e=>{if(!drag||drag.id!==e.pointerId)return;if(Math.abs(e.clientX-drag.start)>6)dragged=true;if(dragged){reset();window.dispatchEvent(new CustomEvent('1age-world-turn',{detail:-(e.clientX-drag.x)/Math.max(1,globe.clientWidth)}));}drag.x=e.clientX;});
@@ -43,7 +78,7 @@
  const earth=landscape?Math.max(112,Math.min(h*.70,240,rx*1.03)):Math.max(80,Math.min(rx-d/2-15,w*.25))*2;
  scene.style.setProperty('--earth',earth+'px');scene.style.setProperty('--orbit-diameter',rx*2+'px');scene.style.setProperty('--orbit-height',(landscape?Math.max(46,ry)*2:rx*2)+'px');document.documentElement.style.setProperty('--ui-planet-size',d+'px');}
 
- new ResizeObserver(fit).observe(scene);fit();sync();
+ new ResizeObserver(fit).observe(scene);fit();showProject(0);
 })();
 
 // 1AGEthe3rd Build 001: style existing ME control when present.
