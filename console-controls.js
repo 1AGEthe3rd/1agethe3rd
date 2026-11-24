@@ -20,12 +20,12 @@
   if(node.matches('.project-planet')){const preview=document.createElement('button');preview.textContent='Keep preview';preview.onclick=()=>options.close();actions.appendChild(preview);const enlarge=document.createElement('button');enlarge.textContent='Enlarge preview';enlarge.onclick=()=>{options.close();$('.preview-expand')?.click();};actions.appendChild(enlarge);}
   if(node.matches('.brand')){const a=document.createElement('a');a.href='/faq/';a.textContent='Help';actions.appendChild(a);const b=document.createElement('a');b.href='https://1age.design';b.textContent='Build with 1AGE.design';actions.appendChild(b);}
   if(!actions.children.length){const b=document.createElement('button');b.textContent='Close';b.onclick=()=>options.close();actions.appendChild(b);}options.showModal();}
- document.addEventListener('pointerdown',e=>{const node=e.target.closest('.project-planet,.header-planet,.brand,.pop-planet,[data-rotate],.search-circle');if(!node||node.disabled||e.button!==0)return;clearPress();delete node.dataset.held;press={node,id:e.pointerId,x:e.clientX,y:e.clientY};node.classList.add('is-pressing');if(node.matches('.project-planet'))emit('1age-project-preview',Number(node.dataset.slot));timer=setTimeout(()=>{if(press)hold(node);},550);},true);
+ document.addEventListener('pointerdown',e=>{const node=e.target.closest('.project-planet,.header-planet,.brand,.pop-planet,[data-rotate],.search-circle');if(!node||node.disabled||e.button!==0)return;clearPress();delete node.dataset.held;press={node,id:e.pointerId,x:e.clientX,y:e.clientY};node.classList.add('is-pressing');if(node.matches('.project-planet'))emit('1age-project-preview',Number(node.dataset.slot));},true);
  document.addEventListener('pointermove',e=>{if(press&&press.id===e.pointerId&&Math.hypot(e.clientX-press.x,e.clientY-press.y)>9)clearPress();},true);
  document.addEventListener('pointerup',clearPress,true);document.addEventListener('pointercancel',clearPress,true);
  document.addEventListener('click',e=>{const n=e.target.closest('[data-held]');if(n){e.preventDefault();e.stopImmediatePropagation();delete n.dataset.held;}},true);
- document.addEventListener('contextmenu',e=>{const n=e.target.closest('.project-planet,.header-planet,.brand,.pop-planet');if(n){e.preventDefault();hold(n);}});
- document.addEventListener('keydown',e=>{if(e.key==='F10'&&e.shiftKey&&e.target.matches('.project-planet,.brand,.pop-planet')){e.preventDefault();hold(e.target);}});
+ 
+ 
  // Reusable browser input bus. Environments subscribe; the home maps sticks to its orbit/globe.
  const state={move:{x:0,y:0},look:{x:0,y:0},buttons:{}};const subscribers=new Set();
  let gamepad={move:{x:0,y:0},look:{x:0,y:0},buttons:{}};
